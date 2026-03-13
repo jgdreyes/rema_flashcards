@@ -180,13 +180,12 @@ def _info_split_cards(belt):
 
     # Kicks / footwork (High Orange) — split
     if curr.get("kicks"):
-        for kick in curr["kicks"]:
-            cards.append({
-                "question": f"Name this kick introduced at {belt['belt_name']}: is **{kick}** one of them?",
-                "answer": f"Yes — **{kick}** is one of the kicks at {belt['belt_name']}.\n\nAll kicks: " + ", ".join(curr["kicks"]),
-                "category": "Kicks",
-                "belt": belt["belt_name"],
-            })
+        cards.append({
+            "question": f"What are the kicks learned at {belt['belt_name']}?",
+            "answer": "\n".join(f"• {k}" for k in curr["kicks"]),
+            "category": "Kicks",
+            "belt": belt["belt_name"],
+        })
 
     # Each combo individually
     if curr.get("combos"):
