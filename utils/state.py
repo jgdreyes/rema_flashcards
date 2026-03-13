@@ -4,8 +4,7 @@ import streamlit as st
 def init_state():
     defaults = {
         "settings_saved": False,
-        "current_belt_key": None,
-        "current_belt_name": None,
+        "selected_belt_keys": [],    # list of belt_keys to include in deck
         "unlocked_cycles": [],       # list of cycle_keys
         "flashcard_mode": "Comprehensive",
         "cards": [],                 # generated deck

@@ -33,6 +33,13 @@ def get_cycle(cycle_key):
     return next((c for c in cycles if c["cycle_key"] == cycle_key), None)
 
 
+def get_belts_for_keys(belt_keys):
+    """Return belt objects for the given keys, in curriculum order."""
+    curriculum = load_curriculum()
+    key_set = set(belt_keys)
+    return [b for b in curriculum if b["belt_key"] in key_set]
+
+
 def belts_up_to(belt_key):
     """Return all belt objects from White Belt up to and including belt_key."""
     curriculum = load_curriculum()

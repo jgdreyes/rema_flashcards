@@ -4,67 +4,33 @@ from utils.data import get_belt_order, get_belt, load_cycles
 
 def render():
     st.title("⚙️ Settings")
-    st.markdown("Configure your current belt rank and which cycles you've unlocked.")
+    st.markdown("Configure which belts and cycles you want to study.")
     st.divider()
 
     belt_order = get_belt_order()   # [(key, name), ...]
-    belt_names = [name for _, name in belt_order]
-    belt_keys  = [key  for key, _ in belt_order]
 
-    # ── Current belt ─────────────────────────────────────────────────────────
-    st.subheader("🥋 Current Belt")
+    # ── Belt selection ────────────────────────────────────────────────────────
+    st.subheader("🥋 Belts")
+    st.markdown("Select which belts to include in your flashcard deck.")
 
-    saved_key = st.session_state.get("current_belt_key") or belt_keys[0]
+    saved_keys = set(st.session_state.get("selected_belt_keys", []))
 
-    def make_belt_handler(changed_key):
-        def handler():
-            if st.session_state[f"belt_cb_{changed_key}"]:
-                for k in belt_keys:
-                    if k != changed_key:
-                        st.session_state[f"belt_cb_{k}"] = False
-            else:
-                if not any(st.session_state.get(f"belt_cb_{k}") for k in belt_keys):
-                    st.session_state[f"belt_cb_{changed_key}"] = True
-        return handler
-
-    selected_key = None
+    selected_belt_keys = []
     for key, name in belt_order:
-        is_checked = st.checkbox(
-            name,
-            value=(key == saved_key),
-            key=f"belt_cb_{key}",
-            on_change=make_belt_handler(key),
-        )
-        if is_checked:
-            selected_key = key
+        checked = st.checkbox(name, value=(key in saved_keys), key=f"belt_cb_{key}")
+        if checked:
+            selected_belt_keys.append(key)
 
-    if selected_key is None:
-        selected_key = saved_key
-
-    selected_name = belt_names[belt_keys.index(selected_key)]
-    selected_belt = get_belt(selected_key)
-
-    if selected_belt:
-        col1, col2 = st.columns(2)
-        with col1:
-            st.metric("Fitness Reps", selected_belt["fitness_reps"])
-        with col2:
-            st.metric("Word of the Belt", selected_belt["word_of_the_belt"])
-
-    # ── Cycles (only shown if belt has cycles) ───────────────────────────────
+    # ── Cycles (shown for any selected belt that has cycles) ─────────────────
     all_cycles = load_cycles()
     selected_cycles = []
 
-    # Gather all cycles relevant up to the selected belt
-    # We need to find which cycles apply to any belt up to selected
     relevant_cycle_keys = set()
-    for key, _ in belt_order:
+    for key in selected_belt_keys:
         belt = get_belt(key)
         if belt and belt.get("cycles"):
             for ck in belt["cycles"]:
                 relevant_cycle_keys.add(ck)
-        if key == selected_key:
-            break
 
     relevant_cycles = [c for c in all_cycles if c["cycle_key"] in relevant_cycle_keys]
 
@@ -81,7 +47,6 @@ def render():
         cols = st.columns(2)
         for i, cycle in enumerate(relevant_cycles):
             with cols[i % 2]:
-                # Show what the cycle contains
                 details = []
                 if cycle.get("form"):
                     details.append(f"Form: *{cycle['form']['name']}*")
@@ -102,13 +67,12 @@ def render():
     # ── Save ─────────────────────────────────────────────────────────────────
     st.divider()
     if st.button("💾 Save Settings", type="primary", use_container_width=True):
-        st.session_state.current_belt_key  = selected_key
-        st.session_state.current_belt_name = selected_name
-        st.session_state.unlocked_cycles   = selected_cycles
-        st.session_state.settings_saved    = True
+        st.session_state.selected_belt_keys = selected_belt_keys
+        st.session_state.unlocked_cycles    = selected_cycles
+        st.session_state.settings_saved     = True
         # Reset any active deck so it gets rebuilt
-        st.session_state.cards      = []
-        st.session_state.card_index = 0
+        st.session_state.cards       = []
+        st.session_state.card_index  = 0
         st.session_state.show_answer = False
-        st.success(f"✅ Settings saved! Belt: **{selected_name}** | Cycles unlocked: **{len(selected_cycles)}**")
+        st.success(f"✅ Settings saved! Belts: **{len(selected_belt_keys)}** | Cycles unlocked: **{len(selected_cycles)}**")
         st.balloons()

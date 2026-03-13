@@ -14,7 +14,7 @@ MODE_DESCRIPTIONS = {
 
 def _build_and_shuffle():
     cards = build_deck(
-        st.session_state.current_belt_key,
+        st.session_state.selected_belt_keys,
         st.session_state.unlocked_cycles,
         st.session_state.flashcard_mode,
     )

@@ -16,7 +16,7 @@ individual_info    – one card for word, one for all combos, one for all forms
 individual_split   – one card for word, one per combo, one per form
 """
 
-from utils.data import belts_up_to, get_cycle
+from utils.data import get_belts_for_keys, get_cycle
 
 
 # ── helpers ─────────────────────────────────────────────────────────────────
@@ -215,15 +215,16 @@ def _info_split_cards(belt):
 
 # ── public API ───────────────────────────────────────────────────────────────
 
-def build_deck(current_belt_key, unlocked_cycles, mode):
+def build_deck(selected_belt_keys, unlocked_cycles, mode):
     """
     Build and return a list of flashcard dicts.
 
+    selected_belt_keys: list of belt_keys to include in the deck.
     unlocked_cycles: list of cycle_keys the student has reached.
     For multi-cycle belts, only include combos/forms whose cycle_key is unlocked.
     """
     import copy
-    belts = belts_up_to(current_belt_key)
+    belts = get_belts_for_keys(selected_belt_keys)
     cards = []
 
     for belt in belts:
