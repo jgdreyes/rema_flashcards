@@ -1,0 +1,618 @@
+[
+  {
+    "belt_key": "white_belt",
+    "belt_name": "White Belt",
+    "word_of_the_belt": "Positive Self-Esteem",
+    "description": "Winning Black Belts have a feeling of self-worth and confidence. Winners develop a feeling of self-acceptance and respect.",
+    "fitness_reps": 10,
+    "curriculum": {
+      "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/2-Curriculum-Flyers-White.pdf",
+      "combos": null,
+      "basics": {
+        "defensive": [
+          "BackFist",
+          "Front Punch",
+          "Reverse Punch",
+          "Front Kick",
+          "Back-Leg Front Kick",
+          "Side Kick"
+        ],
+        "offensive": [
+          "Slide Forward BackFist",
+          "Slide Forward Front Punch",
+          "Slide Forward Reverse Punch",
+          "Step Forward Front Punch, Bump Front Kick",
+          "Step Forward Front Punch, Back-Leg Front Kick (set in front)",
+          "Step Forward BackFist, Step-Behind Side Kick"
+        ]
+      },
+      "forms": null
+    }
+  },
+  {
+    "belt_key": "gold_belt",
+    "belt_name": "Gold Belt",
+    "word_of_the_belt": "Positive Self-Belief",
+    "description": null,
+    "fitness_reps": 15,
+    "curriculum": {
+      "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/3-Curriculum-Flyers-Gold.pdf",
+      "combos": null,
+      "basics": {
+        "blocks": [
+          "Down Block",
+          "Upper Block",
+          "Side Block",
+          "Inner Block",
+          "Outer Block",
+          "Circle Block",
+          "Square Block",
+          "Chop",
+          "Punch"
+        ],
+        "kicks": [
+          "Round Kick",
+          "Back-Leg Round Kick",
+          "Reverse Side Kick",
+          "Pedal-Step Front Kick"
+        ]
+      },
+      "forms": null
+    }
+  },
+  {
+    "belt_key": "high_gold_belt",
+    "belt_name": "High Gold Belt",
+    "word_of_the_belt": "Positive Self-Awareness",
+    "description": "Winning Black Belts know who they are and where they are going. They understand themselves and their goals.",
+    "fitness_reps": 20,
+    "curriculum": {
+      "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/4-Curriculum-Flyers-High-Gold.pdf",
+      "combos": [
+        {
+          "number": 1,
+          "text": "Offensive front punch, reverse punch"
+        },
+        {
+          "number": 2,
+          "text": "Offensive Front Punch, bump front kick, reverse punch"
+        },
+        {
+          "number": 3,
+          "text": "Offensive Front Backfist, step-behind side kick, reverse punch"
+        },
+        {
+          "number": 4,
+          "text": "Offensive Front Punch, back-leg front kick, reverse side kick, reverse punch"
+        }
+      ],
+      "forms": [
+        {
+          "name": "Chon-Ji",
+          "meaning": "Heaven and earth"
+        }
+      ]
+    }
+  },
+  {
+    "belt_key": "orange_belt",
+    "belt_name": "Orange Belt",
+    "word_of_the_belt": "Positive Self-Control",
+    "description": "Winning Black Belts accept 100% responsibility for the outcomes in their own lives. Winners take credit or the blame for their own performance.",
+    "fitness_reps": 25,
+    "curriculum": {
+      "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/5-Curriculum-Flyers-Orange.pdf",
+      "combos": [
+        {
+          "number": 1,
+          "text": "Offensive front punch, reverse punch, front ridgehand"
+        },
+        {
+          "number": 2,
+          "text": "Offensive Front Punch, bump front kick, step-behind side kick, reverse punch"
+        },
+        {
+          "number": 3,
+          "text": "Offensive Front Punch, bump round kick, step-behind side kick, reverse punch"
+        },
+        {
+          "number": 4,
+          "text": "Offensive front Backfist, reverse Punch, back-leg round kick, reverse side kick, reverse punch"
+        }
+      ],
+      "forms": [
+        {
+          "name": "Dan-Gun",
+          "meaning": "Legendary founder of Korea"
+        }
+      ]
+    }
+  },
+  {
+    "belt_key": "high_orange_belt",
+    "belt_name": "High Orange Belt",
+    "word_of_the_belt": "Positive Self-Control",
+    "description": "Winning Black Belts accept 100% responsibility for the outcomes in their own life. Winners take credit or the blame for their own performance.",
+    "fitness_reps": 30,
+    "curriculum": {
+      "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/6-Curriculum-Flyers-High-Orange.pdf",
+      "footwork_patterns": [
+        "Bounce",
+        "X-Factor",
+        "Probing"
+      ],
+      "kicks": [
+        "Hook kick",
+        "Crescent kick",
+        "Reverse hook kick"
+      ],
+      "combos": [
+        {
+          "number": 1,
+          "text": "Back-hand parry, Front-hand parry, ridgehand cover"
+        },
+        {
+          "number": 2,
+          "text": "Back-Hand parry, Shuffle Back Down Block, Shuffle Back Down Block, Front-Hand parry, Reverse Punch"
+        },
+        {
+          "number": 3,
+          "text": "Back-hand parry, Shuffle back round kick cover, shuffle back down block, Front-hand parry, reverse punch"
+        },
+        {
+          "number": 4,
+          "text": "Back-hand parry, Front-hand parry, Step back round kick cover, step back down block, Front-hand parry, reverse punch"
+        }
+      ],
+      "note": "Combos are blocks and counters using Orange Belt combinations",
+      "forms": null
+    }
+  },
+  {
+    "belt_key": "green_belt",
+    "belt_name": "Green Belt",
+    "word_of_the_belt": "Positive Self-Discipline",
+    "description": "Winning Black Belts learn to practice, mentally rehearse, and visualize the successful outcome of activities.",
+    "fitness_reps": 35,
+    "curriculum": {
+      "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/7-Curriculum-Flyers-Green.pdf",
+      "combos": [
+        {
+          "number": 1,
+          "text": "Offensive front backfist, step-behind hook kick, reverse punch"
+        },
+        {
+          "number": 2,
+          "text": "Slide-in side kick/side kick, reverse punch, back leg round kick, spinning backfist, back ridgehand"
+        },
+        {
+          "number": 3,
+          "text": "Offensive front backfist, step-behind hook kick, backleg round kick, reverse side kick, reverse punch"
+        },
+        {
+          "number": 4,
+          "text": "Offensive front punch, reverse punch, back-leg front kick (Low)/round kick (High), reverse side kick, back ridgehand"
+        }
+      ],
+      "forms": [
+        {
+          "name": "Do-San",
+          "meaning": "Educator and Philosopher"
+        }
+      ]
+    }
+  },
+  {
+    "belt_key": "purple_belt",
+    "belt_name": "Purple Belt",
+    "word_of_the_belt": "Positive Self-Expectancy",
+    "description": "Winning Black Belts learn to have an overall feeling of optimism and enthusiasm. Winners expect the best in order to achieve their best.",
+    "fitness_reps": 40,
+    "curriculum": {
+      "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/8-Curriculum-Flyers-Purple.pdf",
+      "combos": [
+        {
+          "number": 1,
+          "text": "Front Punch, switch Front-leg round kick, reverse punch"
+        },
+        {
+          "number": 2,
+          "text": "Hook kick/Round kick, back-leg front kick (set behind), front ridgehand"
+        },
+        {
+          "number": 3,
+          "text": "Leg check, back-leg round kick, spinning backfist, back ridgehand"
+        },
+        {
+          "number": 4,
+          "text": "Skip side kick, reverse hook kick, back-leg round kick, reverse punch"
+        }
+      ],
+      "forms": [
+        {
+          "name": "Won-Hyo",
+          "meaning": "Monk who introduced Buddhism to the Silla Dynasty"
+        }
+      ]
+    }
+  },
+  {
+    "belt_key": "blue_belt",
+    "belt_name": "Blue Belt",
+    "word_of_the_belt": "Positive Self-Motivation",
+    "description": "Winning Black Belts dwell on the rewards of success, not on the penalties of failure. Winners move in the direction of their goals with purpose.",
+    "fitness_reps": 50,
+    "curriculum": {
+      "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/9-Curriculum-Flyers-Blue.pdf",
+      "combos": [
+        {
+          "number": 1,
+          "text": "Offensive Front Punch, Bump outside Crescent kick, reverse punch"
+        },
+        {
+          "number": 2,
+          "text": "Offensive Front Punch, Lunge Punch, Reverse Hook Kick, Reverse Punch"
+        },
+        {
+          "number": 3,
+          "text": "Round Kick (High)/Round Kick (Low), front Overhand BackFist, mid-section Reverse Punch"
+        },
+        {
+          "number": 4,
+          "text": "Side Kick, step-behind side kick, back-leg round kick, Back-hand BackFist, Back-Leg Round Kick"
+        }
+      ],
+      "forms": [
+        {
+          "name": "Yul-Gok",
+          "meaning": "The Confucius of Korea"
+        }
+      ]
+    }
+  },
+  {
+    "belt_key": "high_blue_belt",
+    "belt_name": "High Blue Belt",
+    "word_of_the_belt": "Positive Self-Image",
+    "description": "Winning Black Belts have developed a self-image which sees success, growth, achievement, and winning as the most likely outcomes.",
+    "fitness_reps": 60,
+    "curriculum": {
+      "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/10-Curriculum-Flyers-High-Blue.pdf",
+      "combos": [
+        {
+          "number": 1,
+          "text": "Side kick/slide-in hook kick/round kick, front Overhand BackFist, mid-section Reverse Punch"
+        },
+        {
+          "number": 2,
+          "text": "Jump front-leg round kick, spinning BackFist, back-leg round Kick, Reverse Punch"
+        },
+        {
+          "number": 3,
+          "text": "Round Kick/side Kick, Reverse Side Kick, Back-leg Round kick, reverse punch"
+        },
+        {
+          "number": 4,
+          "text": "Slide-in Hook kick, back-leg round kick, Spinning BackFist, Back RidgeHand"
+        }
+      ],
+      "forms": [
+        {
+          "name": "Joong-Gun",
+          "meaning": "Korean patriot and political assassin"
+        }
+      ]
+    }
+  },
+  {
+    "belt_key": "red_belt",
+    "belt_name": "Red Belt",
+    "word_of_the_belt": "Positive Self-Direction",
+    "description": "Winning Black Belts have clearly defined goals and purpose, which are constantly referred to on a constant basis. Winners are role and goal driven and get what they set!",
+    "fitness_reps": 70,
+    "cycles": [
+      "hwa_rang_cycle",
+      "kali_open_cycle",
+      "chung_mu_cycle",
+      "kama_1_cycle",
+      "toi_gye_cycle",
+      "nunchaku_1_cycle"
+    ],
+    "curriculum": {
+      "combos": [
+        {
+          "number": 1,
+          "text": "Jump back-leg round kick, reverse hook kick, reverse punch",
+          "cycle_key": "toi_gye_cycle"
+        },
+        {
+          "number": 2,
+          "text": "Jump back-leg side kick, reverse side kick, reverse punch",
+          "cycle_key": "toi_gye_cycle"
+        },
+        {
+          "number": 3,
+          "text": "Offensive front punch, bump ax kick, back leg round kick, jump reverse hook kick, reverse punch",
+          "cycle_key": "nunchaku_1_cycle"
+        },
+        {
+          "number": 4,
+          "text": "Offensive front punch, front ridgehand, spinning backfist, back-leg round kick, front backfist, reverse punch",
+          "cycle_key": "nunchaku_1_cycle"
+        }
+      ],
+      "forms": [
+        {
+          "name": "Hwa-Rang",
+          "meaning": "Elite military youth corps",
+          "cycle_key": "hwa_rang_cycle"
+        },
+        {
+          "name": "Chung-Mu",
+          "meaning": "Inventor of the first armored battleship",
+          "cycle_key": "chung_mu_cycle"
+        },
+        {
+          "name": "Toi-Gye",
+          "meaning": "Noted scholar and authority of Neo-Confucianism",
+          "cycle_key": "toi_gye_cycle"
+        }
+      ]
+    }
+  },
+  {
+    "belt_key": "high_red_belt",
+    "belt_name": "High Red Belt",
+    "word_of_the_belt": "Positive Self-Direction",
+    "description": "Winning Black Belts have clearly defined goals and purpose, which are constantly referred to on a constant basis. Winners are role and goal driven and get what they set!",
+    "fitness_reps": 80,
+    "cycles": [
+      "hwa_rang_cycle",
+      "kali_open_cycle",
+      "chung_mu_cycle",
+      "kama_1_cycle",
+      "toi_gye_cycle",
+      "nunchaku_1_cycle"
+    ],
+    "curriculum": {
+      "combos": [
+        {
+          "number": 1,
+          "text": "Lateral front ridgehand, Hook kick, front backfist, back ridgehand",
+          "cycle_key": "hwa_rang_cycle"
+        },
+        {
+          "number": 2,
+          "text": "Lateral round kick (front leg), front punch, reverse punch, front ridgehand, round kick (front leg)",
+          "cycle_key": "hwa_rang_cycle"
+        },
+        {
+          "number": 3,
+          "text": "Fade Ridgehand, Hook Kick, Reverse Punch",
+          "cycle_key": "kali_open_cycle"
+        },
+        {
+          "number": 4,
+          "text": "Retreating side kick, Step-behind Hook Kick/round kick, front backfist, reverse punch",
+          "cycle_key": "kali_open_cycle"
+        }
+      ],
+      "forms": [
+        {
+          "name": "Hwa-Rang",
+          "meaning": "Elite military youth corps",
+          "cycle_key": "hwa_rang_cycle"
+        },
+        {
+          "name": "Chung-Mu",
+          "meaning": "Inventor of the first armored battleship",
+          "cycle_key": "chung_mu_cycle"
+        },
+        {
+          "name": "Toi-Gye",
+          "meaning": "Noted scholar and authority of Neo-Confucianism",
+          "cycle_key": "toi_gye_cycle"
+        }
+      ]
+    }
+  },
+  {
+    "belt_key": "low_brown_belt",
+    "belt_name": "Low Brown Belt",
+    "word_of_the_belt": "Positive Self-Projection",
+    "description": "Winning Black Belts project their best selves every day in the way they look, talk, listen, and react. Winners communicate immediate impressions of happiness and success at all times.",
+    "fitness_reps": 90,
+    "cycles": [
+      "hwa_rang_cycle",
+      "kali_open_cycle",
+      "chung_mu_cycle",
+      "kama_1_cycle",
+      "toi_gye_cycle",
+      "nunchaku_1_cycle"
+    ],
+    "curriculum": {
+      "combos": [
+        {
+          "number": 1,
+          "text": "Jab, Front hook Punch",
+          "cycle_key": "chung_mu_cycle"
+        },
+        {
+          "number": 2,
+          "text": "Back Uppercut, Front Hook Punch",
+          "cycle_key": "chung_mu_cycle"
+        },
+        {
+          "number": 3,
+          "text": "Jab, cross, back-leg teep kick (set behind), front ridgehand",
+          "cycle_key": "kama_1_cycle"
+        },
+        {
+          "number": 4,
+          "text": "Jump reverse round kick, reverse hook kick, front backfist, step-through hook punch",
+          "cycle_key": "kama_1_cycle"
+        }
+      ],
+      "forms": [
+        {
+          "name": "Hwa-Rang",
+          "meaning": "Elite military youth corps",
+          "cycle_key": "hwa_rang_cycle"
+        },
+        {
+          "name": "Chung-Mu",
+          "meaning": "Inventor of the first armored battleship",
+          "cycle_key": "chung_mu_cycle"
+        },
+        {
+          "name": "Toi-Gye",
+          "meaning": "Noted scholar and authority of Neo-Confucianism",
+          "cycle_key": "toi_gye_cycle"
+        }
+      ]
+    }
+  },
+  {
+    "belt_key": "brown_belt",
+    "belt_name": "Brown Belt",
+    "word_of_the_belt": "Positive Self-Projection",
+    "description": "Winning Black Belts project their best selves every day in the way they look, talk, listen, and react. Winners communicate immediate impressions of happiness and success at all times.",
+    "fitness_reps": 100,
+    "cycles": [
+      "might_for_right_cycle",
+      "kali_closed_cycle",
+      "gye_baek_cycle",
+      "kama_2_cycle",
+      "po_eun_cycle",
+      "bo_staff_1_cycle"
+    ],
+    "curriculum": {
+      "combos": [
+        {
+          "number": 1,
+          "text": "Back Uppercut, Front hook punch, back-leg thrust front kick (set behind)",
+          "cycle_key": "kama_2_cycle"
+        },
+        {
+          "number": 2,
+          "text": "Thrust front kick, skip front kick, lead backfist (trap), lateral ridgehand",
+          "cycle_key": "kama_2_cycle"
+        },
+        {
+          "number": 3,
+          "text": "Jump back-leg front kick, switch round kick, spinning backfist, spinning backfist, back-leg hook kick",
+          "cycle_key": "po_eun_cycle"
+        },
+        {
+          "number": 4,
+          "text": "Reverse hook kick/round kick, reverse hook kick/round kick/side kick",
+          "cycle_key": "po_eun_cycle"
+        }
+      ],
+      "forms": [
+        {
+          "name": "Might for Right",
+          "meaning": "Musical form to the music of Exodus",
+          "cycle_key": "might_for_right_cycle"
+        },
+        {
+          "name": "Gye-Baek",
+          "meaning": "Strict and disciplined military general",
+          "cycle_key": "gye_baek_cycle"
+        },
+        {
+          "name": "Po-Eun",
+          "meaning": "Poet and scientist",
+          "cycle_key": "po_eun_cycle"
+        }
+      ]
+    }
+  },
+  {
+    "belt_key": "high_brown_belt",
+    "belt_name": "High Brown Belt",
+    "word_of_the_belt": "Positive Self-Dimension",
+    "description": "Winning Black Belts are in harmony with themselves and their peers. Winners lead others by example and focus on helping others achieve success in their lives, earning love and respect.",
+    "fitness_reps": 100,
+    "cycles": [
+      "might_for_right_cycle",
+      "kali_closed_cycle",
+      "gye_baek_cycle",
+      "kama_2_cycle",
+      "po_eun_cycle",
+      "bo_staff_1_cycle"
+    ],
+    "curriculum": {
+      "combos": [
+        {
+          "number": 1,
+          "text": "Back-leg round kick, tornado kick, reverse hook kick (set behind), back-leg round kick, reverse punch",
+          "cycle_key": "kali_closed_cycle"
+        },
+        {
+          "number": 2,
+          "text": "Slide-in round kick, down round kick/up hook kick, reverse punch",
+          "cycle_key": "kali_closed_cycle"
+        },
+        {
+          "number": 3,
+          "text": "Front kick/side kick, slide-in hook kick/round kick, lateral hook punch",
+          "cycle_key": "gye_baek_cycle"
+        },
+        {
+          "number": 4,
+          "text": "(Step) jump 360 degree Outside crescent kick, front overhand backfist, midsection reverse punch",
+          "cycle_key": "gye_baek_cycle"
+        }
+      ],
+      "forms": [
+        {
+          "name": "Might for Right",
+          "meaning": "Musical form to the music of Exodus",
+          "cycle_key": "might_for_right_cycle"
+        },
+        {
+          "name": "Gye-Baek",
+          "meaning": "Strict and disciplined military general",
+          "cycle_key": "gye_baek_cycle"
+        },
+        {
+          "name": "Po-Eun",
+          "meaning": "Poet and scientist",
+          "cycle_key": "po_eun_cycle"
+        }
+      ]
+    }
+  },
+  {
+    "belt_key": "conditional_black_belt",
+    "belt_name": "Conditional Black Belt",
+    "word_of_the_belt": "Positive Self-Dimension",
+    "description": "Winning Black Belts are in harmony with themselves and their peers. Winners lead others by example and focus on helping others achieve success in their lives, earning love and respect.",
+    "fitness_reps": 110,
+    "cycles": [
+      "conditional_black_belt_cycle"
+    ],
+    "curriculum": {
+      "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2021/06/23-Curriculum-Flyers-Conditional-Black.pdf",
+      "combos": null,
+      "forms": [
+        {
+          "name": "Marriage of East and West",
+          "meaning": "Musical form to the music of Beethoven's 5th Symphony",
+          "cycle_key": "conditional_black_belt_cycle"
+        },
+        {
+          "name": "Papuhaku Sho",
+          "meaning": "Japanese bo staff form",
+          "cycle_key": "conditional_black_belt_cycle"
+        },
+        {
+          "name": "Bassai Dai",
+          "meaning": "Traditional Karate form",
+          "cycle_key": "conditional_black_belt_cycle"
+        }
+      ]
+    }
+  }
+]

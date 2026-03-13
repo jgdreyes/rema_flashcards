@@ -1,0 +1,201 @@
+[
+  {
+    "cycle_name": "Hwa-Rang Cycle",
+    "cycle_key": "hwa_rang_cycle",
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/10/11-Curriculum-Flyers-Hwa-Rang.pdf",
+    "form": {
+      "name": "Hwa-Rang",
+      "meaning": "Elite military youth corps"
+    },
+    "applies_to_belts": [
+      "red_belt",
+      "high_red_belt",
+      "low_brown_belt"
+    ]
+  },
+  {
+    "cycle_name": "Kali (Open) Cycle",
+    "cycle_key": "kali_open_cycle",
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2021/06/12-Curriculum-Flyers-Kali-Open-Series.pdf",
+    "weapon": {
+      "name": "Kali (Open Series)",
+      "description": "Filipino martial art using sticks",
+      "techniques": [
+        "4-Count: Right hand, right foot \u2013 step forward, temple strike, knee strike; step back; Left hand, left foot \u2013 step forward, temple strike, knee strike; step back",
+        "6-Count: Right hand, right foot \u2013 step forward, temple strike, knee strike, temple strike; step back; Left hand, left foot \u2013 step forward, temple strike, knee strike, temple strike; step back",
+        "Tap: Right hand, right foot \u2013 step forward, temple strike, tap, knee strike; step back; repeat other side",
+        "Tap Twirl: Right hand, right foot \u2013 step forward, temple strike, tap, twirl, knee strike; step back; repeat other side",
+        "Cob Cob: No footwork \u2013 right hand temple strike, left hand temple strike; bend knees \u2013 right temple strike, left temple strike; stand up \u2013 right knee strike, left knee strike",
+        "Cradle: Right hand, right foot \u2013 step back temple strike; switch, right to left shoulder; left hand knee strike; switch, left to left shoulder; right hand temple strike; right to right shoulder; step back; repeat other side",
+        "Meet and Merge (I go, you go): Right hand, right foot \u2013 temple strike, partner #1 push strike, partner #2 blocks; step back; repeat other side switching roles"
+      ]
+    },
+    "applies_to_belts": [
+      "red_belt",
+      "high_red_belt",
+      "low_brown_belt"
+    ]
+  },
+  {
+    "cycle_name": "Chung-Mu Cycle",
+    "cycle_key": "chung_mu_cycle",
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/10/13-Curriculum-Flyers-Chung-Mu.pdf",
+    "form": {
+      "name": "Chung-Mu",
+      "meaning": "Inventor of the first armored battleship"
+    },
+    "applies_to_belts": [
+      "red_belt",
+      "high_red_belt",
+      "low_brown_belt"
+    ]
+  },
+  {
+    "cycle_name": "Kama 1 Cycle",
+    "cycle_key": "kama_1_cycle",
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2021/06/14-Curriculum-Flyers-Kama-1.pdf",
+    "weapon": {
+      "name": "Kama 1",
+      "description": "Japanese martial art using a traditional farming tool"
+    },
+    "applies_to_belts": [
+      "red_belt",
+      "high_red_belt",
+      "low_brown_belt"
+    ]
+  },
+  {
+    "cycle_name": "Toi-Gye Cycle",
+    "cycle_key": "toi_gye_cycle",
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/10/15-Curriculum-Flyers-Toi-Gye.pdf",
+    "form": {
+      "name": "Toi-Gye",
+      "meaning": "Noted scholar and authority of Neo-Confucianism"
+    },
+    "applies_to_belts": [
+      "red_belt",
+      "high_red_belt",
+      "low_brown_belt"
+    ]
+  },
+  {
+    "cycle_name": "Nunchaku 1 Cycle",
+    "cycle_key": "nunchaku_1_cycle",
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2021/06/16-Curriculum-Flyers-Nunchaku-1.pdf",
+    "weapon": {
+      "name": "Nunchaku 1",
+      "description": "Japanese martial art using nunchucks"
+    },
+    "applies_to_belts": [
+      "red_belt",
+      "high_red_belt",
+      "low_brown_belt"
+    ]
+  },
+  {
+    "cycle_name": "Might for Right Cycle",
+    "cycle_key": "might_for_right_cycle",
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2021/06/17-Curriculum-Flyers-Might-for-Right.pdf",
+    "form": {
+      "name": "Might for Right",
+      "meaning": "Musical form to the music of Exodus"
+    },
+    "applies_to_belts": [
+      "brown_belt",
+      "high_brown_belt"
+    ]
+  },
+  {
+    "cycle_name": "Kali (Closed) Cycle",
+    "cycle_key": "kali_closed_cycle",
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2021/06/18-Curriculum-Flyers-Kali-Closed-Series.pdf",
+    "weapon": {
+      "name": "Kali (Closed Series)",
+      "description": "Filipino martial art using sticks",
+      "techniques": [
+        "Heaven: Right hand \u2013 temple strike and end on left shoulder; Left hand \u2013 temple strike and end on left shoulder; Right hand \u2013 temple strike and end under left arm; repeat other side",
+        "Earth: Right hand \u2013 knee strike and end on left shoulder; Left hand \u2013 knee strike and end on left shoulder; Right hand \u2013 knee strike and end under left arm; repeat other side",
+        "Heaven/Earth: Right hand \u2013 temple strike and end on left shoulder; Left hand \u2013 knee strike and end on left shoulder; Right hand \u2013 temple strike and end under left arm; repeat other side",
+        "Earth/Heaven: Right hand \u2013 knee strike and end on left shoulder; Left hand \u2013 temple strike and end on left shoulder; Right hand \u2013 knee strike and end under left arm; repeat other side"
+      ]
+    },
+    "applies_to_belts": [
+      "brown_belt",
+      "high_brown_belt"
+    ]
+  },
+  {
+    "cycle_name": "Gye-Baek Cycle",
+    "cycle_key": "gye_baek_cycle",
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/10/19-Curriculum-Flyers-Gye-Baek.pdf",
+    "form": {
+      "name": "Gye-Baek",
+      "meaning": "Strict and disciplined military general"
+    },
+    "applies_to_belts": [
+      "brown_belt",
+      "high_brown_belt"
+    ]
+  },
+  {
+    "cycle_name": "Kama 2 Cycle",
+    "cycle_key": "kama_2_cycle",
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2021/06/20-Curriculum-Flyers-Kama-2.pdf",
+    "weapon": {
+      "name": "Kama 2",
+      "description": "Japanese martial art using a farming tool"
+    },
+    "applies_to_belts": [
+      "brown_belt",
+      "high_brown_belt"
+    ]
+  },
+  {
+    "cycle_name": "Po-Eun Cycle",
+    "cycle_key": "po_eun_cycle",
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/10/21-Curriculum-Flyers-Po-Eun.pdf",
+    "form": {
+      "name": "Po-Eun",
+      "meaning": "Poet and scientist"
+    },
+    "applies_to_belts": [
+      "brown_belt",
+      "high_brown_belt"
+    ]
+  },
+  {
+    "cycle_name": "Bo Staff 1 Cycle",
+    "cycle_key": "bo_staff_1_cycle",
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2021/06/22-Curriculum-Flyers-Bo-Staff-1.pdf",
+    "weapon": {
+      "name": "Bo Staff 1",
+      "description": "Japanese martial art using a long staff"
+    },
+    "applies_to_belts": [
+      "brown_belt",
+      "high_brown_belt"
+    ]
+  },
+  {
+    "cycle_name": "Conditional Black Belt Cycle",
+    "cycle_key": "conditional_black_belt_cycle",
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2021/06/23-Curriculum-Flyers-Conditional-Black.pdf",
+    "forms": [
+      {
+        "name": "Marriage of East and West",
+        "meaning": "Musical form to the music of Beethoven's 5th Symphony"
+      },
+      {
+        "name": "Papuhaku Sho",
+        "meaning": "Japanese bo staff form"
+      },
+      {
+        "name": "Bassai Dai",
+        "meaning": "Traditional Karate form"
+      }
+    ],
+    "applies_to_belts": [
+      "conditional_black_belt"
+    ]
+  }
+]
