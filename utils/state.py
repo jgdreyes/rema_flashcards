@@ -10,6 +10,7 @@ def init_state():
         "cards": [],                 # generated deck
         "card_index": 0,
         "show_answer": False,
+        "curriculum_selected_belt": None,  # belt key selected in curriculum view
     }
     for k, v in defaults.items():
         if k not in st.session_state:

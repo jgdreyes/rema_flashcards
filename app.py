@@ -16,7 +16,7 @@ with st.sidebar:
     st.divider()
     page = st.radio(
         "Navigate",
-        ["⚙️  Settings", "🃏  Flashcards"],
+        ["⚙️  Settings", "🃏  Flashcards", "📋  Curriculum"],
         index=0 if not st.session_state.get("settings_saved") else 1,
         label_visibility="collapsed",
     )
@@ -32,6 +32,9 @@ with st.sidebar:
 if page == "⚙️  Settings":
     from pages.settings import render
     render()
-else:
+elif page == "🃏  Flashcards":
     from pages.flashcards import render
+    render()
+else:
+    from pages.curriculum import render
     render()

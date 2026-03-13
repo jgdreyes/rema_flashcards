@@ -152,6 +152,18 @@ def _info_split_cards(belt):
     return cards
 
 
+def _word_card(belt):
+    answer = f"**{belt['word_of_the_belt']}**"
+    if belt.get("description"):
+        answer += f"\n\n{belt['description']}"
+    return {
+        "question": f"What is the **Word of the Belt** for {belt['belt_name']}?",
+        "answer": answer,
+        "category": "Word of Belt",
+        "belt": belt["belt_name"],
+    }
+
+
 # ── public API ───────────────────────────────────────────────────────────────
 
 def build_deck(selected_belt_keys, unlocked_cycles, mode):
@@ -172,6 +184,11 @@ def build_deck(selected_belt_keys, unlocked_cycles, mode):
     cards = []
 
     for belt in belts:
+        if mode == "Word of the Belt":
+            if belt.get("word_of_the_belt"):
+                cards.append(_word_card(belt))
+            continue
+
         belt = copy.deepcopy(belt)
         curr = belt.get("curriculum", {})
         is_multi_cycle = bool(belt.get("cycles"))

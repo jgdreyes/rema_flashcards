@@ -3,11 +3,12 @@ import streamlit as st
 from utils.deck_builder import build_deck
 
 
-MODES = ["Comprehensive", "Individual (Info Split)"]
+MODES = ["Comprehensive", "Individual (Info Split)", "Word of the Belt"]
 
 MODE_DESCRIPTIONS = {
     "Comprehensive": "One card per belt — tests everything at once: word of belt, combos, forms, and more.",
     "Individual (Info Split)": "Most granular — one card per combo, one card per form, one card for word of belt.",
+    "Word of the Belt": "One card per selected belt — word and meaning only. Ignores cycle selections.",
 }
 
 
