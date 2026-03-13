@@ -176,7 +176,7 @@ def build_deck(selected_belt_keys, unlocked_cycles, mode):
         curr = belt.get("curriculum", {})
         is_multi_cycle = bool(belt.get("cycles"))
 
-        if is_multi_cycle:
+        if is_multi_cycle and mode != "Comprehensive":
             belt_cycle_set = set(belt["cycles"])
             agg_combos = []
             agg_forms = []
@@ -186,12 +186,10 @@ def build_deck(selected_belt_keys, unlocked_cycles, mode):
                 if b.get("cycles") and set(b["cycles"]) == belt_cycle_set:
                     b_curr = b.get("curriculum", {})
                     for c in b_curr.get("combos", []):
-                        if mode == "Comprehensive" or c.get("cycle_key") in unlocked_cycles:
+                        if c.get("cycle_key") in unlocked_cycles:
                             agg_combos.append({**c, "_source_belt": b["belt_name"]})
                     for f in b_curr.get("forms", []):
-                        cycle_ok = mode == "Comprehensive" or (
-                            not f.get("cycle_key") or f.get("cycle_key") in unlocked_cycles
-                        )
+                        cycle_ok = not f.get("cycle_key") or f.get("cycle_key") in unlocked_cycles
                         if cycle_ok and f["name"] not in seen_forms:
                             agg_forms.append(f)
                             seen_forms.add(f["name"])
