@@ -18,8 +18,6 @@ def _build_and_shuffle():
         st.session_state.unlocked_cycles,
         st.session_state.flashcard_mode,
     )
-    if st.session_state.get("shuffle_deck"):
-        random.shuffle(cards)
     st.session_state.cards       = cards
     st.session_state.card_index  = 0
     st.session_state.show_answer = False
@@ -46,12 +44,16 @@ def render():
             st.session_state.cards = []
 
     with col2:
-        shuffle = st.toggle("Shuffle", value=st.session_state.get("shuffle_deck", False))
-        st.session_state.shuffle_deck = shuffle
+        st.write("")
+        if st.button("🔀 Shuffle", use_container_width=True):
+            random.shuffle(st.session_state.cards)
+            st.session_state.card_index  = 0
+            st.session_state.show_answer = False
+            st.rerun()
 
     with col3:
         st.write("")
-        if st.button("🔀 Build Deck", type="primary", use_container_width=True):
+        if st.button("🃏 Build Deck", type="primary", use_container_width=True):
             _build_and_shuffle()
 
     # Auto-build if no deck yet
@@ -116,8 +118,6 @@ def render():
         if st.button("🔁 Restart", use_container_width=True):
             st.session_state.card_index  = 0
             st.session_state.show_answer = False
-            if st.session_state.shuffle_deck:
-                random.shuffle(st.session_state.cards)
             st.rerun()
 
     # ── Completion banner ─────────────────────────────────────────────────────
