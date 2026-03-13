@@ -16,7 +16,7 @@ individual_info    – one card for word, one for all combos, one for all forms
 individual_split   – one card for word, one per combo, one per form
 """
 
-from utils.data import get_belts_for_keys, get_cycle
+from utils.data import get_belts_for_keys, load_curriculum, get_cycle
 
 
 # ── helpers ─────────────────────────────────────────────────────────────────
@@ -221,30 +221,53 @@ def build_deck(selected_belt_keys, unlocked_cycles, mode):
 
     selected_belt_keys: list of belt_keys to include in the deck.
     unlocked_cycles: list of cycle_keys the student has reached.
-    For multi-cycle belts, only include combos/forms whose cycle_key is unlocked.
+
+    Comprehensive / Individual (Info): belt-level info only (no cycle-specific
+    combos or forms for multi-cycle belts).
+    Individual (Info Split): aggregates combos/forms from the full sibling belt
+    family (e.g. red/high_red/low_brown) filtered to the unlocked cycles.
     """
     import copy
+    all_curriculum = load_curriculum()
     belts = get_belts_for_keys(selected_belt_keys)
     cards = []
 
     for belt in belts:
-        # Filter combos and forms by unlocked cycles for multi-cycle belts
         belt = copy.deepcopy(belt)
         curr = belt.get("curriculum", {})
+        is_multi_cycle = bool(belt.get("cycles"))
 
-        if belt.get("cycles"):  # multi-cycle belt
-            if curr.get("combos"):
-                curr["combos"] = [
-                    c for c in curr["combos"]
-                    if c.get("cycle_key") in unlocked_cycles
-                ]
-            if curr.get("forms"):
-                curr["forms"] = [
-                    f for f in curr["forms"]
-                    if not f.get("cycle_key") or f.get("cycle_key") in unlocked_cycles
-                ]
+        if mode in ("Comprehensive", "Individual (Info)"):
+            if is_multi_cycle:
+                # Strip cycle-specific content — only belt-level info shown
+                curr["combos"] = []
+                curr["forms"] = []
 
-        # Skip belt entirely if nothing to test
+        elif mode == "Individual (Info Split)":
+            if is_multi_cycle:
+                # Aggregate combos/forms from the entire sibling belt family
+                # (all belts that share the same cycles) for the unlocked cycles
+                belt_cycle_set = set(belt["cycles"])
+                agg_combos = []
+                agg_forms = []
+                seen_forms = set()
+
+                for b in all_curriculum:
+                    if b.get("cycles") and set(b["cycles"]) == belt_cycle_set:
+                        b_curr = b.get("curriculum", {})
+                        for c in b_curr.get("combos", []):
+                            if c.get("cycle_key") in unlocked_cycles:
+                                agg_combos.append(c)
+                        for f in b_curr.get("forms", []):
+                            if (not f.get("cycle_key") or f.get("cycle_key") in unlocked_cycles) \
+                                    and f["name"] not in seen_forms:
+                                agg_forms.append(f)
+                                seen_forms.add(f["name"])
+
+                curr["combos"] = agg_combos
+                curr["forms"] = agg_forms
+
+        # Skip belt entirely if nothing to show
         has_content = (
             curr.get("combos") or curr.get("forms") or
             curr.get("basics") or curr.get("kicks")
