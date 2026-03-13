@@ -22,7 +22,8 @@ with st.sidebar:
     )
     st.divider()
     if st.session_state.get("settings_saved"):
-        st.caption(f"Current belt: **{st.session_state.current_belt_name}**")
+        selected = st.session_state.get("selected_belt_keys", [])
+        st.caption(f"Belts selected: **{len(selected)}**")
         unlocked = st.session_state.get("unlocked_cycles", [])
         if unlocked:
             st.caption(f"Cycles unlocked: **{len(unlocked)}**")
