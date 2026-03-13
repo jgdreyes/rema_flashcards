@@ -191,11 +191,12 @@ def _info_split_cards(belt):
     if curr.get("combos"):
         for c in curr["combos"]:
             label = _cycle_label(c.get("cycle_key"))
+            belt_label = c.get("_source_belt", belt["belt_name"])
             cards.append({
-                "question": f"**{belt['belt_name']} — Combo {c['number']}**: What are the techniques?",
+                "question": f"**{belt_label} — Combo {c['number']}**: What are the techniques?",
                 "answer": f"{c['text']}{label}",
                 "category": f"Combo {c['number']}",
-                "belt": belt["belt_name"],
+                "belt": belt_label,
             })
 
     # Each form individually
@@ -256,7 +257,7 @@ def build_deck(selected_belt_keys, unlocked_cycles, mode):
                         b_curr = b.get("curriculum", {})
                         for c in b_curr.get("combos", []):
                             if c.get("cycle_key") in unlocked_cycles:
-                                agg_combos.append(c)
+                                agg_combos.append({**c, "_source_belt": b["belt_name"]})
                         for f in b_curr.get("forms", []):
                             if (not f.get("cycle_key") or f.get("cycle_key") in unlocked_cycles) \
                                     and f["name"] not in seen_forms:
