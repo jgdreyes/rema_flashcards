@@ -3,11 +3,10 @@ import streamlit as st
 from utils.deck_builder import build_deck
 
 
-MODES = ["Comprehensive", "Individual (Info)", "Individual (Info Split)"]
+MODES = ["Comprehensive", "Individual (Info Split)"]
 
 MODE_DESCRIPTIONS = {
     "Comprehensive": "One card per belt — tests everything at once: word of belt, combos, forms, and more.",
-    "Individual (Info)": "Separate cards for word of belt, all combos together, and all forms together.",
     "Individual (Info Split)": "Most granular — one card per combo, one card per form, one card for word of belt.",
 }
 
@@ -33,10 +32,12 @@ def render():
     # ── Deck controls ─────────────────────────────────────────────────────────
     col1, col2, col3 = st.columns([2, 1, 1])
     with col1:
+        saved_mode = st.session_state.flashcard_mode
+        mode_index = MODES.index(saved_mode) if saved_mode in MODES else 0
         mode = st.selectbox(
             "Mode",
             MODES,
-            index=MODES.index(st.session_state.flashcard_mode),
+            index=mode_index,
             help="\n\n".join(f"**{m}**: {d}" for m, d in MODE_DESCRIPTIONS.items()),
         )
         if mode != st.session_state.flashcard_mode:
