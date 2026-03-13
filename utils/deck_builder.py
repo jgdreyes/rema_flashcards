@@ -237,13 +237,13 @@ def build_deck(selected_belt_keys, unlocked_cycles, mode):
         curr = belt.get("curriculum", {})
         is_multi_cycle = bool(belt.get("cycles"))
 
-        if mode in ("Comprehensive", "Individual (Info)"):
+        if mode == "Comprehensive":
             if is_multi_cycle:
-                # Strip cycle-specific content — only belt-level info shown
+                # Comprehensive: belt-level info only — no cycle-specific combos/forms
                 curr["combos"] = []
                 curr["forms"] = []
 
-        elif mode == "Individual (Info Split)":
+        elif mode in ("Individual (Info)", "Individual (Info Split)"):
             if is_multi_cycle:
                 # Aggregate combos/forms from the entire sibling belt family
                 # (all belts that share the same cycles) for the unlocked cycles
