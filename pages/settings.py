@@ -14,15 +14,34 @@ def render():
     # ── Current belt ─────────────────────────────────────────────────────────
     st.subheader("🥋 Current Belt")
 
-    saved_key = st.session_state.get("current_belt_key")
-    default_idx = belt_keys.index(saved_key) if saved_key in belt_keys else 0
+    saved_key = st.session_state.get("current_belt_key") or belt_keys[0]
 
-    selected_name = st.selectbox(
-        "Select your current belt",
-        belt_names,
-        index=default_idx,
-    )
-    selected_key = belt_keys[belt_names.index(selected_name)]
+    def make_belt_handler(changed_key):
+        def handler():
+            if st.session_state[f"belt_cb_{changed_key}"]:
+                for k in belt_keys:
+                    if k != changed_key:
+                        st.session_state[f"belt_cb_{k}"] = False
+            else:
+                if not any(st.session_state.get(f"belt_cb_{k}") for k in belt_keys):
+                    st.session_state[f"belt_cb_{changed_key}"] = True
+        return handler
+
+    selected_key = None
+    for key, name in belt_order:
+        is_checked = st.checkbox(
+            name,
+            value=(key == saved_key),
+            key=f"belt_cb_{key}",
+            on_change=make_belt_handler(key),
+        )
+        if is_checked:
+            selected_key = key
+
+    if selected_key is None:
+        selected_key = saved_key
+
+    selected_name = belt_names[belt_keys.index(selected_key)]
     selected_belt = get_belt(selected_key)
 
     if selected_belt:
