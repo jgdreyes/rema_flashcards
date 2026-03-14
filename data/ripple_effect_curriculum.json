@@ -3,7 +3,7 @@
     "belt_key": "white_belt",
     "belt_name": "White Belt",
     "word_of_the_belt": "Positive Self-Esteem",
-    "description": "Winning Black Belts have a feeling of self-worth and confidence. Winners develop a feeling of self-acceptance and respect.",
+    "word_of_the_belt_description": "Winning Black Belts have a feeling of self-worth and confidence. Winners develop a feeling of self-acceptance and respect.",
     "fitness_reps": 10,
     "curriculum": {
       "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/2-Curriculum-Flyers-White.pdf",
@@ -32,8 +32,8 @@
   {
     "belt_key": "gold_belt",
     "belt_name": "Gold Belt",
-    "word_of_the_belt": "Positive Self-Belief",
-    "description": null,
+    "word_of_the_belt": "Positive Self-Awareness",
+    "word_of_the_belt_description": "Winning Black Belts know who they are and where they are going. They understand themselves and their goals.",
     "fitness_reps": 15,
     "curriculum": {
       "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/3-Curriculum-Flyers-Gold.pdf",
@@ -64,7 +64,7 @@
     "belt_key": "high_gold_belt",
     "belt_name": "High Gold Belt",
     "word_of_the_belt": "Positive Self-Awareness",
-    "description": "Winning Black Belts know who they are and where they are going. They understand themselves and their goals.",
+    "word_of_the_belt_description": "Winning Black Belts know who they are and where they are going. They understand themselves and their goals.",
     "fitness_reps": 20,
     "curriculum": {
       "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/4-Curriculum-Flyers-High-Gold.pdf",
@@ -95,7 +95,7 @@
     "belt_key": "orange_belt",
     "belt_name": "Orange Belt",
     "word_of_the_belt": "Positive Self-Control",
-    "description": "Winning Black Belts accept 100% responsibility for the outcomes in their own lives. Winners take credit or the blame for their own performance.",
+    "word_of_the_belt_description": "Winning Black Belts accept 100% responsibility for the outcomes in their own lives. Winners take credit or the blame for their own performance.",
     "fitness_reps": 25,
     "curriculum": {
       "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/5-Curriculum-Flyers-Orange.pdf",
@@ -126,7 +126,7 @@
     "belt_key": "high_orange_belt",
     "belt_name": "High Orange Belt",
     "word_of_the_belt": "Positive Self-Control",
-    "description": "Winning Black Belts accept 100% responsibility for the outcomes in their own life. Winners take credit or the blame for their own performance.",
+    "word_of_the_belt_description": "Winning Black Belts accept 100% responsibility for the outcomes in their own life. Winners take credit or the blame for their own performance.",
     "fitness_reps": 30,
     "curriculum": {
       "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/6-Curriculum-Flyers-High-Orange.pdf",
@@ -166,7 +166,7 @@
     "belt_key": "green_belt",
     "belt_name": "Green Belt",
     "word_of_the_belt": "Positive Self-Discipline",
-    "description": "Winning Black Belts learn to practice, mentally rehearse, and visualize the successful outcome of activities.",
+    "word_of_the_belt_description": "Winning Black Belts learn to practice, mentally rehearse, and visualize the successful outcome of activities.",
     "fitness_reps": 35,
     "curriculum": {
       "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/7-Curriculum-Flyers-Green.pdf",
@@ -197,7 +197,7 @@
     "belt_key": "purple_belt",
     "belt_name": "Purple Belt",
     "word_of_the_belt": "Positive Self-Expectancy",
-    "description": "Winning Black Belts learn to have an overall feeling of optimism and enthusiasm. Winners expect the best in order to achieve their best.",
+    "word_of_the_belt_description": "Winning Black Belts learn to have an overall feeling of optimism and enthusiasm. Winners expect the best in order to achieve their best.",
     "fitness_reps": 40,
     "curriculum": {
       "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/8-Curriculum-Flyers-Purple.pdf",
@@ -228,7 +228,7 @@
     "belt_key": "blue_belt",
     "belt_name": "Blue Belt",
     "word_of_the_belt": "Positive Self-Motivation",
-    "description": "Winning Black Belts dwell on the rewards of success, not on the penalties of failure. Winners move in the direction of their goals with purpose.",
+    "word_of_the_belt_description": "Winning Black Belts dwell on the rewards of success, not on the penalties of failure. Winners move in the direction of their goals with purpose.",
     "fitness_reps": 50,
     "curriculum": {
       "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/9-Curriculum-Flyers-Blue.pdf",
@@ -259,7 +259,7 @@
     "belt_key": "high_blue_belt",
     "belt_name": "High Blue Belt",
     "word_of_the_belt": "Positive Self-Image",
-    "description": "Winning Black Belts have developed a self-image which sees success, growth, achievement, and winning as the most likely outcomes.",
+    "word_of_the_belt_description": "Winning Black Belts have developed a self-image which sees success, growth, achievement, and winning as the most likely outcomes.",
     "fitness_reps": 60,
     "curriculum": {
       "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/10-Curriculum-Flyers-High-Blue.pdf",
@@ -290,7 +290,7 @@
     "belt_key": "red_belt",
     "belt_name": "Red Belt",
     "word_of_the_belt": "Positive Self-Direction",
-    "description": "Winning Black Belts have clearly defined goals and purpose, which are constantly referred to on a constant basis. Winners are role and goal driven and get what they set!",
+    "word_of_the_belt_description": "Winning Black Belts have clearly defined goals and purpose, which are constantly referred to on a constant basis. Winners are role and goal driven and get what they set!",
     "fitness_reps": 70,
     "cycles": [
       "hwa_rang_cycle",
@@ -334,7 +334,7 @@
     "belt_key": "high_red_belt",
     "belt_name": "High Red Belt",
     "word_of_the_belt": "Positive Self-Direction",
-    "description": "Winning Black Belts have clearly defined goals and purpose, which are constantly referred to on a constant basis. Winners are role and goal driven and get what they set!",
+    "word_of_the_belt_description": "Winning Black Belts have clearly defined goals and purpose, which are constantly referred to on a constant basis. Winners are role and goal driven and get what they set!",
     "fitness_reps": 80,
     "cycles": [
       "hwa_rang_cycle",
@@ -378,7 +378,7 @@
     "belt_key": "low_brown_belt",
     "belt_name": "Low Brown Belt",
     "word_of_the_belt": "Positive Self-Projection",
-    "description": "Winning Black Belts project their best selves every day in the way they look, talk, listen, and react. Winners communicate immediate impressions of happiness and success at all times.",
+    "word_of_the_belt_description": "Winning Black Belts project their best selves every day in the way they look, talk, listen, and react. Winners communicate immediate impressions of happiness and success at all times.",
     "fitness_reps": 90,
     "cycles": [
       "hwa_rang_cycle",
@@ -422,7 +422,7 @@
     "belt_key": "brown_belt",
     "belt_name": "Brown Belt",
     "word_of_the_belt": "Positive Self-Projection",
-    "description": "Winning Black Belts project their best selves every day in the way they look, talk, listen, and react. Winners communicate immediate impressions of happiness and success at all times.",
+    "word_of_the_belt_description": "Winning Black Belts project their best selves every day in the way they look, talk, listen, and react. Winners communicate immediate impressions of happiness and success at all times.",
     "fitness_reps": 100,
     "cycles": [
       "might_for_right_cycle",
@@ -466,7 +466,7 @@
     "belt_key": "high_brown_belt",
     "belt_name": "High Brown Belt",
     "word_of_the_belt": "Positive Self-Dimension",
-    "description": "Winning Black Belts are in harmony with themselves and their peers. Winners lead others by example and focus on helping others achieve success in their lives, earning love and respect.",
+    "word_of_the_belt_description": "Winning Black Belts are in harmony with themselves and their peers. Winners lead others by example and focus on helping others achieve success in their lives, earning love and respect.",
     "fitness_reps": 100,
     "cycles": [
       "might_for_right_cycle",
@@ -510,7 +510,7 @@
     "belt_key": "conditional_black_belt",
     "belt_name": "Conditional Black Belt",
     "word_of_the_belt": "Positive Self-Dimension",
-    "description": "Winning Black Belts are in harmony with themselves and their peers. Winners lead others by example and focus on helping others achieve success in their lives, earning love and respect.",
+    "word_of_the_belt_description": "Winning Black Belts are in harmony with themselves and their peers. Winners lead others by example and focus on helping others achieve success in their lives, earning love and respect.",
     "fitness_reps": 110,
     "cycles": [
       "conditional_black_belt_cycle"

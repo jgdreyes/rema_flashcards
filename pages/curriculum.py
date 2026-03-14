@@ -153,8 +153,8 @@ def _show_detail(belt_key):
     info_col, rep_col, pdf_col = st.columns([3, 1, 1])
 
     with info_col:
-        if belt.get("description"):
-            st.markdown(belt["description"])
+        if belt.get("word_of_the_belt_description"):
+            st.markdown(belt["word_of_the_belt_description"])
 
     with rep_col:
         st.metric("Fitness Reps", belt.get("fitness_reps", "—"))

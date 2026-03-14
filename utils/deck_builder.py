@@ -59,7 +59,7 @@ def _comprehensive_card(belt):
     # Word of belt
     answer_parts.append(
         f"**Word of the Belt:** {belt['word_of_the_belt']}\n"
-        f"{belt.get('description') or ''}"
+        f"{belt.get('word_of_the_belt_description') or ''}"
     )
 
     # Fitness
@@ -105,7 +105,7 @@ def _info_split_cards(belt, include_word=True, include_forms=True):
     if include_word:
         cards.append({
             "question": f"What is the **Word of the Belt** for {belt['belt_name']}?",
-            "answer": f"**{belt['word_of_the_belt']}**\n\n{belt.get('description') or ''}",
+            "answer": f"**{belt['word_of_the_belt']}**\n\n{belt.get('word_of_the_belt_description') or ''}",
             "category": "Word of Belt",
             "belt": belt["belt_name"],
         })
@@ -160,8 +160,8 @@ def _info_split_cards(belt, include_word=True, include_forms=True):
 
 def _word_card(belt):
     answer = f"**{belt['word_of_the_belt']}**"
-    if belt.get("description"):
-        answer += f"\n\n{belt['description']}"
+    if belt.get("word_of_the_belt_description"):
+        answer += f"\n\n{belt['word_of_the_belt_description']}"
     return {
         "question": f"What is the **Word of the Belt** for {belt['belt_name']}?",
         "answer": answer,
