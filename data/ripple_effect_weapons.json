@@ -1,0 +1,73 @@
+[
+  {
+    "weapon_key": "kali_open",
+    "weapon_name": "Kali (Open Series)",
+    "description": "Filipino martial art using sticks",
+    "cycle_key": "kali_open_cycle",
+    "video_urls": [
+      "https://www.youtube.com/watch?v=wjbMXFAQtJM",
+      "https://www.youtube.com/watch?v=9FqTSMLYV_8",
+      "https://www.youtube.com/watch?v=uw53wnKZ-wQ",
+      "https://www.youtube.com/watch?v=HSVVHapff38",
+      "https://www.youtube.com/watch?v=Kx-4qYxuepQ"
+    ],
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2021/06/12-Curriculum-Flyers-Kali-Open-Series.pdf"
+  },
+  {
+    "weapon_key": "kama_1",
+    "weapon_name": "Kama 1",
+    "description": "Japanese martial art using a traditional farming tool",
+    "cycle_key": "kama_1_cycle",
+    "video_urls": [
+      "https://www.youtube.com/watch?v=E6rs2sGSn70",
+      "https://www.youtube.com/watch?v=-Ini5PgpRaY"
+    ],
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2021/06/14-Curriculum-Flyers-Kama-1.pdf"
+  },
+  {
+    "weapon_key": "nunchaku_1",
+    "weapon_name": "Nunchaku 1",
+    "description": "Japanese martial art using nunchucks",
+    "cycle_key": "nunchaku_1_cycle",
+    "video_urls": [
+      "https://www.youtube.com/watch?v=MJis2N8r11E",
+      "https://www.youtube.com/watch?v=Wx-_RFPVyxg",
+      "https://www.youtube.com/watch?v=8fZUQC2Ins0"
+    ],
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2021/06/16-Curriculum-Flyers-Nunchaku-1.pdf"
+  },
+  {
+    "weapon_key": "kali_closed",
+    "weapon_name": "Kali (Closed Series)",
+    "description": "Filipino martial art using sticks",
+    "cycle_key": "kali_closed_cycle",
+    "video_urls": [
+      "https://www.youtube.com/watch?v=Hfl4vWADdTI"
+    ],
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2021/06/18-Curriculum-Flyers-Kali-Closed-Series.pdf"
+  },
+  {
+    "weapon_key": "kama_2",
+    "weapon_name": "Kama 2",
+    "description": "Japanese martial art using a farming tool",
+    "cycle_key": "kama_2_cycle",
+    "video_urls": [
+      "https://www.youtube.com/watch?v=2NxDdkGQ3tA",
+      "https://www.youtube.com/watch?v=K5Z6FwfVPGg",
+      "https://www.youtube.com/watch?v=2o3QYQ9bCQw"
+    ],
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2021/06/20-Curriculum-Flyers-Kama-2.pdf"
+  },
+  {
+    "weapon_key": "bo_staff_1",
+    "weapon_name": "Bo Staff 1",
+    "description": "Japanese martial art using a long staff",
+    "cycle_key": "bo_staff_1_cycle",
+    "video_urls": [
+      "https://www.youtube.com/watch?v=9X8BhIJY8O8",
+      "https://www.youtube.com/watch?v=v4cL41-Vc1I",
+      "https://www.youtube.com/watch?v=N4fSR8fkyO8"
+    ],
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2021/06/22-Curriculum-Flyers-Bo-Staff-1.pdf"
+  }
+]

@@ -1,0 +1,195 @@
+[
+  {
+    "form_key": "chon_ji",
+    "form_name": "Chon-Ji",
+    "meaning": "Heaven and earth",
+    "belt_key": "high_gold_belt",
+    "cycle_key": null,
+    "video_urls": [
+      "https://www.youtube.com/watch?v=I57bwfHlmLc"
+    ],
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/4-Curriculum-Flyers-High-Gold.pdf"
+  },
+  {
+    "form_key": "dan_gun",
+    "form_name": "Dan-Gun",
+    "meaning": "Legendary founder of Korea",
+    "belt_key": "orange_belt",
+    "cycle_key": null,
+    "video_urls": [
+      "https://www.youtube.com/watch?v=VBGnYKgKXxg"
+    ],
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/5-Curriculum-Flyers-Orange.pdf"
+  },
+  {
+    "form_key": "do_san",
+    "form_name": "Do-San",
+    "meaning": "Educator and philosopher",
+    "belt_key": "green_belt",
+    "cycle_key": null,
+    "video_urls": [
+      "https://www.youtube.com/watch?v=zPc65f1mDX4"
+    ],
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/7-Curriculum-Flyers-Green.pdf"
+  },
+  {
+    "form_key": "won_hyo",
+    "form_name": "Won-Hyo",
+    "meaning": "A monk who introduced Buddhism to the Silla Dynasty",
+    "belt_key": "purple_belt",
+    "cycle_key": null,
+    "video_urls": [
+      "https://www.youtube.com/watch?v=7BpiC25Otbs",
+      "https://www.youtube.com/watch?v=27fUhjbz-N8"
+    ],
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/8-Curriculum-Flyers-Purple.pdf"
+  },
+  {
+    "form_key": "yul_gok",
+    "form_name": "Yul-Gok",
+    "meaning": "The Confucius of Korea",
+    "belt_key": "blue_belt",
+    "cycle_key": null,
+    "video_urls": [
+      "https://www.youtube.com/watch?v=MWD6-sYBn38",
+      "https://www.youtube.com/watch?v=KjJv38dui7w",
+      "https://www.youtube.com/watch?v=Ksw0JLKzmic"
+    ],
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/9-Curriculum-Flyers-Blue.pdf"
+  },
+  {
+    "form_key": "joong_gun",
+    "form_name": "Joong-Gun",
+    "meaning": "Korean patriot and political assassin",
+    "belt_key": "high_blue_belt",
+    "cycle_key": null,
+    "video_urls": [
+      "https://www.youtube.com/watch?v=P-Vq2gWMYgo",
+      "https://www.youtube.com/watch?v=v8MPyLZWJtk",
+      "https://www.youtube.com/watch?v=04cmq2sutsA"
+    ],
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/09/10-Curriculum-Flyers-High-Blue.pdf"
+  },
+  {
+    "form_key": "hwa_rang",
+    "form_name": "Hwa-Rang",
+    "meaning": "Elite military youth corps",
+    "belt_key": null,
+    "cycle_key": "hwa_rang_cycle",
+    "video_urls": [
+      "https://www.youtube.com/watch?v=ETPPKqKzuWw",
+      "https://www.youtube.com/watch?v=1qGpT8uHuN8",
+      "https://www.youtube.com/watch?v=WV_w2vQ16Zo"
+    ],
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/10/11-Curriculum-Flyers-Hwa-Rang.pdf"
+  },
+  {
+    "form_key": "chung_mu",
+    "form_name": "Chung-Mu",
+    "meaning": "Inventor of the first armored battleship",
+    "belt_key": null,
+    "cycle_key": "chung_mu_cycle",
+    "video_urls": [
+      "https://www.youtube.com/watch?v=6RybEI9sO-c",
+      "https://www.youtube.com/watch?v=atQsaUwSMhk",
+      "https://www.youtube.com/watch?v=WC4DUJKk0gA"
+    ],
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/10/13-Curriculum-Flyers-Chung-Mu.pdf"
+  },
+  {
+    "form_key": "toi_gye",
+    "form_name": "Toi-Gye",
+    "meaning": "Noted scholar and authority of Neo-Confucianism",
+    "belt_key": null,
+    "cycle_key": "toi_gye_cycle",
+    "video_urls": [
+      "https://www.youtube.com/watch?v=K9I1Repn2uY",
+      "https://www.youtube.com/watch?v=Q0oItqpnnVY",
+      "https://www.youtube.com/watch?v=jWIpYnJVSd0"
+    ],
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/10/15-Curriculum-Flyers-Toi-Gye.pdf"
+  },
+  {
+    "form_key": "might_for_right",
+    "form_name": "Might for Right",
+    "meaning": "Musical form to the music of Exodus",
+    "belt_key": null,
+    "cycle_key": "might_for_right_cycle",
+    "video_urls": [
+      "https://www.youtube.com/watch?v=Y9I_Gx_82_c",
+      "https://www.youtube.com/watch?v=R7IDJw6NqTM",
+      "https://www.youtube.com/watch?v=ry7nKGz9tk0",
+      "https://www.youtube.com/watch?v=I7V3_bzCc_E",
+      "https://www.youtube.com/watch?v=j4VZ6aT0W-c"
+    ],
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2021/06/17-Curriculum-Flyers-Might-for-Right.pdf"
+  },
+  {
+    "form_key": "gye_baek",
+    "form_name": "Gye-Baek",
+    "meaning": "Strict and disciplined military general",
+    "belt_key": null,
+    "cycle_key": "gye_baek_cycle",
+    "video_urls": [
+      "https://www.youtube.com/watch?v=cGtUGskjGYI",
+      "https://www.youtube.com/watch?v=LzA64jdAP1w",
+      "https://www.youtube.com/watch?v=smnRmwFXI3I",
+      "https://www.youtube.com/watch?v=rLiZsh2YlXE"
+    ],
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/10/19-Curriculum-Flyers-Gye-Baek.pdf"
+  },
+  {
+    "form_key": "po_eun",
+    "form_name": "Po-Eun",
+    "meaning": "Poet and scientist",
+    "belt_key": null,
+    "cycle_key": "po_eun_cycle",
+    "video_urls": [
+      "https://www.youtube.com/watch?v=h8ervVfiqZM",
+      "https://www.youtube.com/watch?v=7i4KREYcq40"
+    ],
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2020/10/21-Curriculum-Flyers-Po-Eun.pdf"
+  },
+  {
+    "form_key": "marriage_of_east_and_west",
+    "form_name": "Marriage of East and West",
+    "meaning": "Musical form to the music of Beethoven's 5th Symphony",
+    "belt_key": null,
+    "cycle_key": "conditional_black_belt_cycle",
+    "video_urls": [
+      "https://www.youtube.com/watch?v=rooV7HEtCUY",
+      "https://www.youtube.com/watch?v=z6XEu6c-RB4",
+      "https://www.youtube.com/watch?v=3-yQv5_iBNM",
+      "https://www.youtube.com/watch?v=mX-mrL-4T70",
+      "https://www.youtube.com/watch?v=qiIiffngAzA"
+    ],
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2021/06/23-Curriculum-Flyers-Conditional-Black.pdf"
+  },
+  {
+    "form_key": "papuhaku_sho",
+    "form_name": "Papuhaku Sho",
+    "meaning": "Japanese bo staff form",
+    "belt_key": null,
+    "cycle_key": "conditional_black_belt_cycle",
+    "video_urls": [
+      "https://www.youtube.com/watch?v=b_u87G4k4r4",
+      "https://www.youtube.com/watch?v=lY_cZ3050AU",
+      "https://www.youtube.com/watch?v=erRfbhfhhWg"
+    ],
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2021/06/23-Curriculum-Flyers-Conditional-Black.pdf"
+  },
+  {
+    "form_key": "bassai_dai",
+    "form_name": "Bassai Dai",
+    "meaning": "Traditional Karate form",
+    "belt_key": null,
+    "cycle_key": "conditional_black_belt_cycle",
+    "video_urls": [
+      "https://www.youtube.com/watch?v=2pMBrwENWMw",
+      "https://www.youtube.com/watch?v=BukRica0sZw",
+      "https://www.youtube.com/watch?v=4uYpV80ZV3o",
+      "https://www.youtube.com/watch?v=GoszY9pC3DM"
+    ],
+    "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2021/06/23-Curriculum-Flyers-Conditional-Black.pdf"
+  }
+]
