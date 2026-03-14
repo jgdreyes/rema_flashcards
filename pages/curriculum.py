@@ -1,65 +1,76 @@
 import json
 import streamlit as st
+import streamlit.components.v1 as components
 from utils.data import load_curriculum, get_belt, get_cycle, get_form, get_weapon
 
-# Belt background / foreground colors
+# Belt background / foreground colors, optional stripe color
 BELT_COLORS = {
-    "white_belt":             ("#F5F5F5", "#222222"),
-    "gold_belt":              ("#FFD700", "#2a1f00"),
-    "high_gold_belt":         ("#DAA520", "#2a1f00"),
-    "orange_belt":            ("#FF8C00", "#1a0800"),
-    "high_orange_belt":       ("#E06000", "#1a0600"),
-    "green_belt":             ("#2E8B57", "#FFFFFF"),
-    "purple_belt":            ("#7B2D8B", "#FFFFFF"),
-    "blue_belt":              ("#1E6FBF", "#FFFFFF"),
-    "high_blue_belt":         ("#0A4A8F", "#FFFFFF"),
-    "red_belt":               ("#C41E3A", "#FFFFFF"),
-    "high_red_belt":          ("#8B0000", "#FFFFFF"),
-    "low_brown_belt":         ("#B8732A", "#FFFFFF"),
-    "brown_belt":             ("#8B4513", "#FFFFFF"),
-    "high_brown_belt":        ("#5C2E0A", "#FFFFFF"),
-    "conditional_black_belt": ("#1A1A1A", "#FFFFFF"),
+    "white_belt":             ("#F5F5F5", "#222222", None),
+    "gold_belt":              ("#FFD700", "#2a1f00", None),
+    "high_gold_belt":         ("#FFD700", "#2a1f00", "#000000"),
+    "orange_belt":            ("#FF8C00", "#1a0800", None),
+    "high_orange_belt":       ("#FF8C00", "#1a0800", "#000000"),
+    "green_belt":             ("#2E8B57", "#FFFFFF",  None),
+    "purple_belt":            ("#7B2D8B", "#FFFFFF",  None),
+    "blue_belt":              ("#1E6FBF", "#FFFFFF",  None),
+    "high_blue_belt":         ("#1E6FBF", "#FFFFFF",  "#000000"),
+    "red_belt":               ("#C41E3A", "#FFFFFF",  None),
+    "high_red_belt":          ("#C41E3A", "#FFFFFF",  "#000000"),
+    "low_brown_belt":         ("#8B4513", "#FFFFFF",  "#FFFFFF"),
+    "brown_belt":             ("#8B4513", "#FFFFFF",  None),
+    "high_brown_belt":        ("#8B4513", "#FFFFFF",  "#000000"),
+    "conditional_black_belt": ("#1A1A1A", "#FFFFFF",  "#FFFFFF"),
 }
 
 
-def _belt_color_script():
-    """Inject JS that styles belt-name buttons with their belt color."""
+def _inject_belt_colors():
+    """Use a components iframe to run JS that styles belt buttons in the parent page."""
     curriculum = load_curriculum()
     color_map = {
-        belt["belt_name"]: list(BELT_COLORS.get(belt["belt_key"], ("#888", "#FFF")))
+        belt["belt_name"]: list(BELT_COLORS.get(belt["belt_key"], ("#888", "#FFF", None)))
         for belt in curriculum
     }
     color_map_json = json.dumps(color_map)
-    return f"""
+    components.html(f"""
 <script>
 (function () {{
-    const colors = {color_map_json};
+    var colors = {color_map_json};
 
     function styleButtons() {{
-        document.querySelectorAll('button[data-testid="stBaseButton-secondary"]').forEach(function (btn) {{
+        var doc = window.parent.document;
+        doc.querySelectorAll('button').forEach(function (btn) {{
             var text = btn.innerText.trim();
             if (colors[text]) {{
-                btn.style.setProperty('background-color', colors[text][0], 'important');
-                btn.style.setProperty('color',            colors[text][1], 'important');
-                btn.style.setProperty('height',           '90px',         'important');
-                btn.style.setProperty('font-size',        '13px',         'important');
-                btn.style.setProperty('font-weight',      '700',          'important');
-                btn.style.setProperty('border-radius',    '10px',         'important');
-                btn.style.setProperty('white-space',      'normal',       'important');
-                btn.style.setProperty('line-height',      '1.3',          'important');
-                btn.style.setProperty('border',           '2px solid rgba(0,0,0,0.15)', 'important');
+                var bg     = colors[text][0];
+                var fg     = colors[text][1];
+                var stripe = colors[text][2];
+                var bgValue = stripe
+                    ? 'linear-gradient(to bottom,' + bg + ' 0%,' + bg + ' 34%,' + stripe + ' 34%,' + stripe + ' 66%,' + bg + ' 66%,' + bg + ' 100%)'
+                    : bg;
+                var textColor = stripe
+                    ? (stripe === '#000000' ? '#FFFFFF' : '#000000')
+                    : fg;
+                btn.style.setProperty('background',    bgValue,                       'important');
+                btn.style.setProperty('color',         textColor,                     'important');
+                btn.style.setProperty('height',        '90px',                        'important');
+                btn.style.setProperty('font-size',     '13px',                        'important');
+                btn.style.setProperty('font-weight',   '700',                         'important');
+                btn.style.setProperty('border-radius', '10px',                        'important');
+                btn.style.setProperty('white-space',   'normal',                      'important');
+                btn.style.setProperty('line-height',   '1.3',                         'important');
+                btn.style.setProperty('border',        '2px solid rgba(0,0,0,0.15)', 'important');
             }}
         }});
     }}
 
     var obs = new MutationObserver(styleButtons);
-    obs.observe(document.body, {{ childList: true, subtree: true }});
+    obs.observe(window.parent.document.body, {{ childList: true, subtree: true }});
     styleButtons();
-    setTimeout(styleButtons, 200);
-    setTimeout(styleButtons, 600);
+    setTimeout(styleButtons, 300);
+    setTimeout(styleButtons, 800);
 }})();
 </script>
-"""
+""", height=0)
 
 
 # ── Grid view ────────────────────────────────────────────────────────────────
@@ -68,7 +79,7 @@ def _show_grid():
     st.title("📋 Belt Curriculum")
     st.caption("Select a belt to view its full curriculum.")
 
-    st.markdown(_belt_color_script(), unsafe_allow_html=True)
+    _inject_belt_colors()
 
     curriculum = load_curriculum()
     COLS = 5
@@ -111,7 +122,7 @@ def _show_detail(belt_key):
         st.error("Belt not found.")
         return
 
-    bg, fg = BELT_COLORS.get(belt_key, ("#888888", "#FFFFFF"))
+    bg, fg, _stripe = BELT_COLORS.get(belt_key, ("#888888", "#FFFFFF", None))
     curr = belt.get("curriculum", {})
 
     # ── Back button ───────────────────────────────────────────────────────────
