@@ -33,7 +33,7 @@ def render():
     st.title("🃏 Flashcards")
 
     # ── Deck controls ─────────────────────────────────────────────────────────
-    col1, col2, col3 = st.columns([2, 1, 1])
+    col1, col2, col3, col4 = st.columns([2, 1, 1, 1])
     with col1:
         saved_mode = st.session_state.flashcard_mode
         mode_index = MODES.index(saved_mode) if saved_mode in MODES else 0
@@ -49,13 +49,17 @@ def render():
 
     with col2:
         st.write("")
+        show_all = st.checkbox("Practice Mode", value=False, key="practice_show_all")
+
+    with col3:
+        st.write("")
         if st.button("🔀 Shuffle", use_container_width=True):
             random.shuffle(st.session_state.cards)
             st.session_state.card_index  = 0
             st.session_state.show_answer = False
             st.rerun()
 
-    with col3:
+    with col4:
         st.write("")
         if st.button("🃏 Build Deck", type="primary", use_container_width=True):
             _build_and_shuffle()
@@ -94,6 +98,9 @@ def render():
     card  = cards[idx]
     total = len(cards)
 
+    if show_all:
+        st.info("📖 **Practice Mode** — answers are always visible.")
+
     st.divider()
 
     # ── Progress ──────────────────────────────────────────────────────────────
@@ -111,7 +118,7 @@ def render():
     with st.container(border=True):
         st.markdown(f"### {card['question']}")
 
-        if st.session_state.show_answer:
+        if st.session_state.show_answer or show_all:
             st.divider()
             st.markdown(card["answer"])
         else:
@@ -119,7 +126,10 @@ def render():
             st.markdown(" ")
 
     # ── Flip / nav buttons ────────────────────────────────────────────────────
-    btn1, btn2, btn3, btn4 = st.columns([1, 1, 1, 1])
+    if show_all:
+        btn1, btn3, btn4 = st.columns([1, 1, 1])
+    else:
+        btn1, btn2, btn3, btn4 = st.columns([1, 1, 1, 1])
 
     with btn1:
         if st.button("⬅️ Previous", use_container_width=True, disabled=(idx == 0)):
@@ -127,11 +137,12 @@ def render():
             st.session_state.show_answer = False
             st.rerun()
 
-    with btn2:
-        flip_label = "🙈 Hide Answer" if st.session_state.show_answer else "👁️ Show Answer"
-        if st.button(flip_label, use_container_width=True, type="primary"):
-            st.session_state.show_answer = not st.session_state.show_answer
-            st.rerun()
+    if not show_all:
+        with btn2:
+            flip_label = "🙈 Hide Answer" if st.session_state.show_answer else "👁️ Show Answer"
+            if st.button(flip_label, use_container_width=True, type="primary"):
+                st.session_state.show_answer = not st.session_state.show_answer
+                st.rerun()
 
     with btn3:
         if st.button("➡️ Next", use_container_width=True, disabled=(idx == total - 1)):
