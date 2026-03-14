@@ -15,7 +15,7 @@ comprehensive    – one card per belt covering ALL info (all cycles)
 individual_split – one card per combo, one card per form (unlocked cycles only)
 """
 
-from utils.data import get_belts_for_keys, load_curriculum, get_cycle
+from utils.data import get_belts_for_keys, load_curriculum, get_cycle, get_form
 
 
 # ── helpers ─────────────────────────────────────────────────────────────────
@@ -30,7 +30,9 @@ def _fmt_combos(combos):
 def _fmt_forms(forms):
     lines = []
     for f in forms:
-        lines.append(f"  • {f['name']} — {f['meaning']}")
+        form = get_form(f["form_key"])
+        if form:
+            lines.append(f"  • {form['form_name']} — {form['meaning']}")
     return "\n".join(lines)
 
 
@@ -142,10 +144,13 @@ def _info_split_cards(belt, include_word=True, include_forms=True):
     # Each form individually
     if include_forms and curr.get("forms"):
         for f in curr["forms"]:
+            form = get_form(f["form_key"])
+            if not form:
+                continue
             cyc_label = _cycle_label(f.get("cycle_key"))
             cards.append({
-                "question": f"What does the form **{f['name']}** mean? (learned at {belt['belt_name']}{cyc_label})",
-                "answer": f"**{f['name']}** — {f['meaning']}",
+                "question": f"What does the form **{form['form_name']}** mean? (learned at {belt['belt_name']}{cyc_label})",
+                "answer": f"**{form['form_name']}** — {form['meaning']}",
                 "category": "Form",
                 "belt": belt["belt_name"],
             })

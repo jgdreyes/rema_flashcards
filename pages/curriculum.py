@@ -1,6 +1,6 @@
 import json
 import streamlit as st
-from utils.data import load_curriculum, get_belt, get_cycle
+from utils.data import load_curriculum, get_belt, get_cycle, get_form, get_weapon
 
 # Belt background / foreground colors
 BELT_COLORS = {
@@ -183,8 +183,10 @@ def _show_detail(belt_key):
     # ── Forms ─────────────────────────────────────────────────────────────────
     if curr.get("forms"):
         _section_header("Forms")
-        for form in curr["forms"]:
-            st.markdown(f"**{form['name']}** — *{form['meaning']}*")
+        for f in curr["forms"]:
+            form = get_form(f["form_key"])
+            if form:
+                st.markdown(f"**{form['form_name']}** — *{form['meaning']}*")
         st.divider()
 
     # ── Cycles (multi-cycle belts) ────────────────────────────────────────────
@@ -201,16 +203,20 @@ def _show_detail(belt_key):
                     if cycle.get("curriculum_pdf"):
                         st.link_button("📄 Cycle PDF", cycle["curriculum_pdf"], use_container_width=True)
                 with c1:
-                    if cycle.get("form"):
-                        st.markdown(f"**Form:** {cycle['form']['name']} — *{cycle['form']['meaning']}*")
-                    if cycle.get("weapon"):
-                        st.markdown(f"**Weapon:** {cycle['weapon']['name']}")
-                        if cycle["weapon"].get("description"):
-                            st.caption(cycle["weapon"]["description"])
-                        if cycle["weapon"].get("techniques"):
-                            st.markdown("**Techniques:**")
-                            for tech in cycle["weapon"]["techniques"]:
-                                st.markdown(f"• {tech}")
+                    for fk in cycle.get("form_keys", []):
+                        form = get_form(fk)
+                        if form:
+                            st.markdown(f"**Form:** {form['form_name']} — *{form['meaning']}*")
+                    if cycle.get("weapon_key"):
+                        weapon = get_weapon(cycle["weapon_key"])
+                        if weapon:
+                            st.markdown(f"**Weapon:** {weapon['weapon_name']}")
+                            if weapon.get("description"):
+                                st.caption(weapon["description"])
+                            if weapon.get("techniques"):
+                                st.markdown("**Techniques:**")
+                                for tech in weapon["techniques"]:
+                                    st.markdown(f"• {tech}")
 
 
 # ── Entry point ───────────────────────────────────────────────────────────────

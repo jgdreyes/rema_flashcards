@@ -17,6 +17,18 @@ def load_cycles():
         return json.load(f)
 
 
+@st.cache_data
+def load_forms():
+    with open(os.path.join(DATA_DIR, "ripple_effect_forms.json")) as f:
+        return json.load(f)
+
+
+@st.cache_data
+def load_weapons():
+    with open(os.path.join(DATA_DIR, "ripple_effect_weapons.json")) as f:
+        return json.load(f)
+
+
 def get_belt_order():
     """Return list of (belt_key, belt_name) in rank order."""
     curriculum = load_curriculum()
@@ -31,6 +43,16 @@ def get_belt(belt_key):
 def get_cycle(cycle_key):
     cycles = load_cycles()
     return next((c for c in cycles if c["cycle_key"] == cycle_key), None)
+
+
+def get_form(form_key):
+    forms = load_forms()
+    return next((f for f in forms if f["form_key"] == form_key), None)
+
+
+def get_weapon(weapon_key):
+    weapons = load_weapons()
+    return next((w for w in weapons if w["weapon_key"] == weapon_key), None)
 
 
 def get_belts_for_keys(belt_keys):

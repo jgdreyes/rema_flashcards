@@ -3,6 +3,15 @@
     "weapon_key": "kali_open",
     "weapon_name": "Kali (Open Series)",
     "description": "Filipino martial art using sticks",
+    "techniques": [
+      "4-Count: Right hand, right foot – step forward, temple strike, knee strike; step back; Left hand, left foot – step forward, temple strike, knee strike; step back",
+      "6-Count: Right hand, right foot – step forward, temple strike, knee strike, temple strike; step back; Left hand, left foot – step forward, temple strike, knee strike, temple strike; step back",
+      "Tap: Right hand, right foot – step forward, temple strike, tap, knee strike; step back; repeat other side",
+      "Tap Twirl: Right hand, right foot – step forward, temple strike, tap, twirl, knee strike; step back; repeat other side",
+      "Cob Cob: No footwork – right hand temple strike, left hand temple strike; bend knees – right temple strike, left temple strike; stand up – right knee strike, left knee strike",
+      "Cradle: Right hand, right foot – step back temple strike; switch, right to left shoulder; left hand knee strike; switch, left to left shoulder; right hand temple strike; right to right shoulder; step back; repeat other side",
+      "Meet and Merge (I go, you go): Right hand, right foot – temple strike, partner #1 push strike, partner #2 blocks; step back; repeat other side switching roles"
+    ],
     "cycle_key": "kali_open_cycle",
     "video_urls": [
       "https://www.youtube.com/watch?v=wjbMXFAQtJM",
@@ -40,6 +49,12 @@
     "weapon_key": "kali_closed",
     "weapon_name": "Kali (Closed Series)",
     "description": "Filipino martial art using sticks",
+    "techniques": [
+      "Heaven: Right hand – temple strike and end on left shoulder; Left hand – temple strike and end on left shoulder; Right hand – temple strike and end under left arm; repeat other side",
+      "Earth: Right hand – knee strike and end on left shoulder; Left hand – knee strike and end on left shoulder; Right hand – knee strike and end under left arm; repeat other side",
+      "Heaven/Earth: Right hand – temple strike and end on left shoulder; Left hand – knee strike and end on left shoulder; Right hand – temple strike and end under left arm; repeat other side",
+      "Earth/Heaven: Right hand – knee strike and end on left shoulder; Left hand – temple strike and end on left shoulder; Right hand – knee strike and end under left arm; repeat other side"
+    ],
     "cycle_key": "kali_closed_cycle",
     "video_urls": [
       "https://www.youtube.com/watch?v=Hfl4vWADdTI"

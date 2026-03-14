@@ -87,10 +87,7 @@
         }
       ],
       "forms": [
-        {
-          "name": "Chon-Ji",
-          "meaning": "Heaven and earth"
-        }
+        {"form_key": "chon_ji"}
       ]
     }
   },
@@ -121,10 +118,7 @@
         }
       ],
       "forms": [
-        {
-          "name": "Dan-Gun",
-          "meaning": "Legendary founder of Korea"
-        }
+        {"form_key": "dan_gun"}
       ]
     }
   },
@@ -195,10 +189,7 @@
         }
       ],
       "forms": [
-        {
-          "name": "Do-San",
-          "meaning": "Educator and Philosopher"
-        }
+        {"form_key": "do_san"}
       ]
     }
   },
@@ -229,10 +220,7 @@
         }
       ],
       "forms": [
-        {
-          "name": "Won-Hyo",
-          "meaning": "Monk who introduced Buddhism to the Silla Dynasty"
-        }
+        {"form_key": "won_hyo"}
       ]
     }
   },
@@ -263,10 +251,7 @@
         }
       ],
       "forms": [
-        {
-          "name": "Yul-Gok",
-          "meaning": "The Confucius of Korea"
-        }
+        {"form_key": "yul_gok"}
       ]
     }
   },
@@ -297,10 +282,7 @@
         }
       ],
       "forms": [
-        {
-          "name": "Joong-Gun",
-          "meaning": "Korean patriot and political assassin"
-        }
+        {"form_key": "joong_gun"}
       ]
     }
   },
@@ -342,21 +324,9 @@
         }
       ],
       "forms": [
-        {
-          "name": "Hwa-Rang",
-          "meaning": "Elite military youth corps",
-          "cycle_key": "hwa_rang_cycle"
-        },
-        {
-          "name": "Chung-Mu",
-          "meaning": "Inventor of the first armored battleship",
-          "cycle_key": "chung_mu_cycle"
-        },
-        {
-          "name": "Toi-Gye",
-          "meaning": "Noted scholar and authority of Neo-Confucianism",
-          "cycle_key": "toi_gye_cycle"
-        }
+        {"form_key": "hwa_rang", "cycle_key": "hwa_rang_cycle"},
+        {"form_key": "chung_mu", "cycle_key": "chung_mu_cycle"},
+        {"form_key": "toi_gye", "cycle_key": "toi_gye_cycle"}
       ]
     }
   },
@@ -398,21 +368,9 @@
         }
       ],
       "forms": [
-        {
-          "name": "Hwa-Rang",
-          "meaning": "Elite military youth corps",
-          "cycle_key": "hwa_rang_cycle"
-        },
-        {
-          "name": "Chung-Mu",
-          "meaning": "Inventor of the first armored battleship",
-          "cycle_key": "chung_mu_cycle"
-        },
-        {
-          "name": "Toi-Gye",
-          "meaning": "Noted scholar and authority of Neo-Confucianism",
-          "cycle_key": "toi_gye_cycle"
-        }
+        {"form_key": "hwa_rang", "cycle_key": "hwa_rang_cycle"},
+        {"form_key": "chung_mu", "cycle_key": "chung_mu_cycle"},
+        {"form_key": "toi_gye", "cycle_key": "toi_gye_cycle"}
       ]
     }
   },
@@ -454,21 +412,9 @@
         }
       ],
       "forms": [
-        {
-          "name": "Hwa-Rang",
-          "meaning": "Elite military youth corps",
-          "cycle_key": "hwa_rang_cycle"
-        },
-        {
-          "name": "Chung-Mu",
-          "meaning": "Inventor of the first armored battleship",
-          "cycle_key": "chung_mu_cycle"
-        },
-        {
-          "name": "Toi-Gye",
-          "meaning": "Noted scholar and authority of Neo-Confucianism",
-          "cycle_key": "toi_gye_cycle"
-        }
+        {"form_key": "hwa_rang", "cycle_key": "hwa_rang_cycle"},
+        {"form_key": "chung_mu", "cycle_key": "chung_mu_cycle"},
+        {"form_key": "toi_gye", "cycle_key": "toi_gye_cycle"}
       ]
     }
   },
@@ -510,21 +456,9 @@
         }
       ],
       "forms": [
-        {
-          "name": "Might for Right",
-          "meaning": "Musical form to the music of Exodus",
-          "cycle_key": "might_for_right_cycle"
-        },
-        {
-          "name": "Gye-Baek",
-          "meaning": "Strict and disciplined military general",
-          "cycle_key": "gye_baek_cycle"
-        },
-        {
-          "name": "Po-Eun",
-          "meaning": "Poet and scientist",
-          "cycle_key": "po_eun_cycle"
-        }
+        {"form_key": "might_for_right", "cycle_key": "might_for_right_cycle"},
+        {"form_key": "gye_baek", "cycle_key": "gye_baek_cycle"},
+        {"form_key": "po_eun", "cycle_key": "po_eun_cycle"}
       ]
     }
   },
@@ -566,21 +500,9 @@
         }
       ],
       "forms": [
-        {
-          "name": "Might for Right",
-          "meaning": "Musical form to the music of Exodus",
-          "cycle_key": "might_for_right_cycle"
-        },
-        {
-          "name": "Gye-Baek",
-          "meaning": "Strict and disciplined military general",
-          "cycle_key": "gye_baek_cycle"
-        },
-        {
-          "name": "Po-Eun",
-          "meaning": "Poet and scientist",
-          "cycle_key": "po_eun_cycle"
-        }
+        {"form_key": "might_for_right", "cycle_key": "might_for_right_cycle"},
+        {"form_key": "gye_baek", "cycle_key": "gye_baek_cycle"},
+        {"form_key": "po_eun", "cycle_key": "po_eun_cycle"}
       ]
     }
   },
@@ -597,21 +519,9 @@
       "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2021/06/23-Curriculum-Flyers-Conditional-Black.pdf",
       "combos": null,
       "forms": [
-        {
-          "name": "Marriage of East and West",
-          "meaning": "Musical form to the music of Beethoven's 5th Symphony",
-          "cycle_key": "conditional_black_belt_cycle"
-        },
-        {
-          "name": "Papuhaku Sho",
-          "meaning": "Japanese bo staff form",
-          "cycle_key": "conditional_black_belt_cycle"
-        },
-        {
-          "name": "Bassai Dai",
-          "meaning": "Traditional Karate form",
-          "cycle_key": "conditional_black_belt_cycle"
-        }
+        {"form_key": "marriage_of_east_and_west", "cycle_key": "conditional_black_belt_cycle"},
+        {"form_key": "papuhaku_sho", "cycle_key": "conditional_black_belt_cycle"},
+        {"form_key": "bassai_dai", "cycle_key": "conditional_black_belt_cycle"}
       ]
     }
   }
