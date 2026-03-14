@@ -17,7 +17,8 @@ with st.sidebar:
     page = st.radio(
         "Navigate",
         ["⚙️  Settings", "🃏  Flashcards", "📋  Curriculum"],
-        index=0 if not st.session_state.get("settings_saved") else 1,
+        index=0,
+        key="nav_radio",
         label_visibility="collapsed",
     )
     st.divider()

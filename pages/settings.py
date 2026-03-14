@@ -48,10 +48,10 @@ def render():
         for i, cycle in enumerate(relevant_cycles):
             with cols[i % 2]:
                 details = []
-                if cycle.get("form"):
-                    details.append(f"Form: *{cycle['form']['name']}*")
-                if cycle.get("weapon"):
-                    details.append(f"Weapon: *{cycle['weapon']['name']}*")
+                for fk in cycle.get("form_keys", []):
+                    details.append(f"Form: *{fk.replace('_', ' ').title()}*")
+                if cycle.get("weapon_key"):
+                    details.append(f"Weapon: *{cycle['weapon_key'].replace('_', ' ').title()}*")
                 applies = ", ".join(cycle["applies_to_belts"]).replace("_", " ").title()
                 details.append(f"Belts: {applies}")
 
@@ -70,6 +70,7 @@ def render():
         st.session_state.selected_belt_keys = selected_belt_keys
         st.session_state.unlocked_cycles    = selected_cycles
         st.session_state.settings_saved     = True
+
         # Reset any active deck so it gets rebuilt
         st.session_state.cards       = []
         st.session_state.card_index  = 0

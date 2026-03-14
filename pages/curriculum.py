@@ -93,6 +93,18 @@ def _section_header(text):
     st.markdown(f"### {text}")
 
 
+def _video_previews(video_urls):
+    if not video_urls:
+        return
+    cols = st.columns(min(len(video_urls), 3))
+    for i, url in enumerate(video_urls):
+        with cols[i % len(cols)]:
+            label = f"Part {i + 1}" if len(video_urls) > 1 else None
+            if label:
+                st.caption(label)
+            st.video(url)
+
+
 def _show_detail(belt_key):
     belt = get_belt(belt_key)
     if not belt:
@@ -183,10 +195,17 @@ def _show_detail(belt_key):
     # ── Forms ─────────────────────────────────────────────────────────────────
     if curr.get("forms"):
         _section_header("Forms")
+        multiple = len(curr["forms"]) > 1
         for f in curr["forms"]:
             form = get_form(f["form_key"])
-            if form:
+            if not form:
+                continue
+            if multiple:
+                with st.expander(f"{form['form_name']} — *{form['meaning']}*"):
+                    _video_previews(form.get("video_urls", []))
+            else:
                 st.markdown(f"**{form['form_name']}** — *{form['meaning']}*")
+                _video_previews(form.get("video_urls", []))
         st.divider()
 
     # ── Cycles (multi-cycle belts) ────────────────────────────────────────────
@@ -207,12 +226,14 @@ def _show_detail(belt_key):
                         form = get_form(fk)
                         if form:
                             st.markdown(f"**Form:** {form['form_name']} — *{form['meaning']}*")
+                            _video_previews(form.get("video_urls", []))
                     if cycle.get("weapon_key"):
                         weapon = get_weapon(cycle["weapon_key"])
                         if weapon:
                             st.markdown(f"**Weapon:** {weapon['weapon_name']}")
                             if weapon.get("description"):
                                 st.caption(weapon["description"])
+                            _video_previews(weapon.get("video_urls", []))
                             if weapon.get("techniques"):
                                 st.markdown("**Techniques:**")
                                 for tech in weapon["techniques"]:
