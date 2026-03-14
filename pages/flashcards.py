@@ -17,6 +17,8 @@ def _build_and_shuffle():
         st.session_state.selected_belt_keys,
         st.session_state.unlocked_cycles,
         st.session_state.flashcard_mode,
+        include_word=st.session_state.info_split_include_word,
+        include_forms=st.session_state.info_split_include_forms,
     )
     st.session_state.cards       = cards
     st.session_state.card_index  = 0
@@ -57,6 +59,27 @@ def render():
         st.write("")
         if st.button("🃏 Build Deck", type="primary", use_container_width=True):
             _build_and_shuffle()
+
+    # ── Info Split filters ────────────────────────────────────────────────────
+    if mode == "Individual (Info Split)":
+        fc1, fc2 = st.columns(2)
+        with fc1:
+            include_word = st.checkbox(
+                "Include Word of Belt",
+                value=st.session_state.info_split_include_word,
+                key="cb_include_word",
+            )
+        with fc2:
+            include_forms = st.checkbox(
+                "Include Forms",
+                value=st.session_state.info_split_include_forms,
+                key="cb_include_forms",
+            )
+        if (include_word  != st.session_state.info_split_include_word or
+                include_forms != st.session_state.info_split_include_forms):
+            st.session_state.info_split_include_word  = include_word
+            st.session_state.info_split_include_forms = include_forms
+            st.session_state.cards = []
 
     # Auto-build if no deck yet
     if not st.session_state.cards:

@@ -94,18 +94,19 @@ def _comprehensive_card(belt):
 
 
 
-def _info_split_cards(belt):
+def _info_split_cards(belt, include_word=True, include_forms=True):
     """One card per combo, one card per form, one card for word."""
     curr = belt.get("curriculum", {})
     cards = []
 
     # Word of belt
-    cards.append({
-        "question": f"What is the **Word of the Belt** for {belt['belt_name']}?",
-        "answer": f"**{belt['word_of_the_belt']}**\n\n{belt.get('description') or ''}",
-        "category": "Word of Belt",
-        "belt": belt["belt_name"],
-    })
+    if include_word:
+        cards.append({
+            "question": f"What is the **Word of the Belt** for {belt['belt_name']}?",
+            "answer": f"**{belt['word_of_the_belt']}**\n\n{belt.get('description') or ''}",
+            "category": "Word of Belt",
+            "belt": belt["belt_name"],
+        })
 
     # Basics
     if curr.get("basics"):
@@ -139,7 +140,7 @@ def _info_split_cards(belt):
             })
 
     # Each form individually
-    if curr.get("forms"):
+    if include_forms and curr.get("forms"):
         for f in curr["forms"]:
             cyc_label = _cycle_label(f.get("cycle_key"))
             cards.append({
@@ -166,7 +167,8 @@ def _word_card(belt):
 
 # ── public API ───────────────────────────────────────────────────────────────
 
-def build_deck(selected_belt_keys, unlocked_cycles, mode):
+def build_deck(selected_belt_keys, unlocked_cycles, mode,
+               include_word=True, include_forms=True):
     """
     Build and return a list of flashcard dicts.
 
@@ -225,6 +227,6 @@ def build_deck(selected_belt_keys, unlocked_cycles, mode):
         if mode == "Comprehensive":
             cards.append(_comprehensive_card(belt))
         else:
-            cards.extend(_info_split_cards(belt))
+            cards.extend(_info_split_cards(belt, include_word=include_word, include_forms=include_forms))
 
     return cards
