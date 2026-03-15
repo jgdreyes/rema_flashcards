@@ -1,6 +1,7 @@
 import random
 import streamlit as st
 from utils.deck_builder import build_deck
+from utils.data import get_belt_order, get_belt, load_cycles
 
 
 MODES = ["Comprehensive", "Individual (Info Split)", "Word of the Belt"]
@@ -25,12 +26,160 @@ def _build_and_shuffle():
     st.session_state.show_answer = False
 
 
-def render():
-    if not st.session_state.get("settings_saved"):
-        st.warning("👈 Please configure your belt and cycles in **Settings** first.")
+def _show_progress_tags():
+    selected_keys = st.session_state.get("selected_belt_keys", [])
+    unlocked = st.session_state.get("unlocked_cycles", [])
+
+    if not selected_keys:
+        st.caption("No belts configured.")
         return
 
+    pills_html = []
+    for key in selected_keys:
+        belt = get_belt(key)
+        if not belt:
+            continue
+        name = belt["belt_name"]
+        color = belt.get("belt_color", {})
+        bg     = color.get("background_color", "#888888")
+        stripe = color.get("stripe_color")
+        if stripe:
+            bg_css = f"linear-gradient(to bottom, {bg} 0%, {bg} 35%, {stripe} 35%, {stripe} 65%, {bg} 65%)"
+        else:
+            bg_css = bg
+        pills_html.append(
+            f'<span class="belt-tip" style="background:{bg_css};width:32px;height:18px;'
+            f'border-radius:4px;margin:2px 3px;display:inline-block;cursor:default;'
+            f'position:relative;vertical-align:middle;">'
+            f'<span class="belt-tiptext">{name}</span>'
+            f'</span>'
+        )
+
+    cycle_count = len(unlocked)
+    cycle_label = f"{cycle_count} cycle{'s' if cycle_count != 1 else ''} unlocked"
+    if unlocked:
+        all_cycles = load_cycles()
+        cycle_name_map = {c["cycle_key"]: c["cycle_name"] for c in all_cycles}
+        cycle_names = [cycle_name_map.get(k, k) for k in unlocked]
+        tooltip_content = "<br>".join(cycle_names)
+        cycle_pill = (
+            f'<span class="cycle-tip" style="background:#2c2c2c;color:#cccccc;padding:3px 10px;'
+            f'border-radius:12px;font-size:0.8rem;font-weight:600;'
+            f'margin:2px 3px;display:inline-block;cursor:default;position:relative;">'
+            f'🔄 {cycle_label}'
+            f'<span class="cycle-tiptext">{tooltip_content}</span>'
+            f'</span>'
+        )
+    else:
+        cycle_pill = (
+            f'<span style="background:#2c2c2c;color:#cccccc;padding:3px 10px;'
+            f'border-radius:12px;font-size:0.8rem;font-weight:600;'
+            f'margin:2px 3px;display:inline-block;">🔄 {cycle_label}</span>'
+        )
+    pills_html.append(cycle_pill)
+
+    tooltip_css = """
+    <style>
+    .belt-tip .belt-tiptext, .cycle-tip .cycle-tiptext {
+        visibility: hidden;
+        background: #333;
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: 400;
+        text-align: left;
+        padding: 6px 10px;
+        border-radius: 6px;
+        position: absolute;
+        bottom: 140%;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        z-index: 999;
+        line-height: 1.6;
+    }
+    .belt-tip:hover .belt-tiptext { visibility: visible; }
+    .cycle-tip:hover .cycle-tiptext { visibility: visible; }
+    </style>
+    """
+    st.markdown(tooltip_css + " ".join(pills_html), unsafe_allow_html=True)
+
+
+@st.dialog("Configure Progress")
+def _configure_progress_dialog():
+    belt_order = get_belt_order()
+    saved_keys = set(st.session_state.get("selected_belt_keys", []))
+
+    st.subheader("🥋 Belts")
+    selected_belt_keys = []
+    for key, name in belt_order:
+        if st.checkbox(name, value=(key in saved_keys), key=f"dlg_belt_{key}"):
+            selected_belt_keys.append(key)
+
+    # Cycles for selected belts
+    all_cycles = load_cycles()
+    relevant_cycle_keys = set()
+    for key in selected_belt_keys:
+        belt = get_belt(key)
+        if belt and belt.get("cycles"):
+            for ck in belt["cycles"]:
+                relevant_cycle_keys.add(ck)
+
+    relevant_cycles = [c for c in all_cycles if c["cycle_key"] in relevant_cycle_keys]
+    selected_cycles = []
+
+    if relevant_cycles:
+        st.divider()
+        st.subheader("🔄 Unlocked Cycles")
+        saved_unlocked = st.session_state.get("unlocked_cycles", [])
+        cols = st.columns(2)
+        for i, cycle in enumerate(relevant_cycles):
+            with cols[i % 2]:
+                details = []
+                for fk in cycle.get("form_keys", []):
+                    details.append(f"Form: *{fk.replace('_', ' ').title()}*")
+                if cycle.get("weapon_key"):
+                    details.append(f"Weapon: *{cycle['weapon_key'].replace('_', ' ').title()}*")
+                applies = ", ".join(cycle["applies_to_belts"]).replace("_", " ").title()
+                details.append(f"Belts: {applies}")
+                if st.checkbox(
+                    cycle["cycle_name"],
+                    value=cycle["cycle_key"] in saved_unlocked,
+                    key=f"dlg_cycle_{cycle['cycle_key']}",
+                    help=" | ".join(details),
+                ):
+                    selected_cycles.append(cycle["cycle_key"])
+
+    st.divider()
+    if st.button("💾 Save", type="primary", use_container_width=True):
+        st.session_state.selected_belt_keys = selected_belt_keys
+        st.session_state.unlocked_cycles    = selected_cycles
+        st.session_state.settings_saved     = True
+        st.session_state.cards              = []
+        st.session_state.card_index         = 0
+        st.session_state.show_answer        = False
+        st.rerun()
+
+
+def render():
+    from utils.auth import get_current_user
+    user = get_current_user()
+
     st.title("🃏 Flashcards")
+
+    # ── Progress tags (always visible) ────────────────────────────────────────
+    tag_col, btn_col = st.columns([5, 1])
+    with tag_col:
+        _show_progress_tags()
+    with btn_col:
+        if st.button("⚙️ Configure", use_container_width=True):
+            _configure_progress_dialog()
+
+    if not st.session_state.get("settings_saved"):
+        if user:
+            st.warning("👆 Hit Configure or visit **User Settings** to set up your belts and cycles.")
+        else:
+            st.info("👆 Hit Configure to select your belts and get started.")
+        return
 
     # ── Deck controls ─────────────────────────────────────────────────────────
     col1, col2, col3, col4 = st.columns([2, 1, 1, 1])

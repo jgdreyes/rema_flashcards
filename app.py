@@ -61,13 +61,16 @@ pg = st.navigation(all_pages, position="hidden")
 
 user = st.session_state.get("current_user")
 
-settings_label = "🔧  User Settings" if user else "🔧  Guest Configuration"
-PAGE_LABELS  = ["📋  Curriculum", "🃏  Flashcards", settings_label]
-PAGE_OBJECTS = [curriculum_page, flashcards_page, settings_page]
+if user:
+    PAGE_LABELS  = ["📋  Curriculum", "🃏  Flashcards", "🔧  User Settings"]
+    PAGE_OBJECTS = [curriculum_page, flashcards_page, settings_page]
+else:
+    PAGE_LABELS  = ["📋  Curriculum", "🃏  Flashcards"]
+    PAGE_OBJECTS = [curriculum_page, flashcards_page]
 
 is_belt_page = pg in belt_pages.values()
 current_idx  = 0 if is_belt_page else next(
-    (i for i, p in enumerate(PAGE_OBJECTS) if p.title == pg.title), 2
+    (i for i, p in enumerate(PAGE_OBJECTS) if p.title == pg.title), 0
 )
 
 with st.sidebar:
@@ -85,7 +88,7 @@ with st.sidebar:
         if st.button("Log Out", use_container_width=True):
             from utils.auth import sign_out
             sign_out()
-            st.session_state["_pending_toast"] = ("info", "You've been logged out.")
+            st.session_state["_pending_toast"] = ("👋", "You've been logged out.")
             st.switch_page(curriculum_page)
     else:
         if st.button("Log In / Sign Up", use_container_width=True):
