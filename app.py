@@ -29,11 +29,17 @@ def _render_curriculum():
     _show_grid()
 
 
+def _render_auth():
+    from pages.auth_page import render
+    render()
+
+
 # ── Page objects ──────────────────────────────────────────────────────────────
 
 settings_page   = st.Page(_render_settings,   title="Settings",   url_path="settings",   default=True)
 flashcards_page = st.Page(_render_flashcards, title="Flashcards", url_path="flashcards")
 curriculum_page = st.Page(_render_curriculum, title="Curriculum", url_path="curriculum")
+auth_page       = st.Page(_render_auth,       title="Account",    url_path="account")
 
 # Belt detail pages — file-based so Streamlit derives URLs as curriculum/<belt_key>
 # from the nested file path pages/curriculum/<belt_key>.py.
@@ -47,7 +53,7 @@ belt_pages = {
 st.session_state["_curriculum_page"] = curriculum_page
 st.session_state["_belt_pages"]       = belt_pages
 
-all_pages = [settings_page, flashcards_page, curriculum_page, *belt_pages.values()]
+all_pages = [settings_page, flashcards_page, curriculum_page, auth_page, *belt_pages.values()]
 pg = st.navigation(all_pages, position="hidden")
 
 # ── Sidebar ───────────────────────────────────────────────────────────────────
@@ -76,6 +82,18 @@ with st.sidebar:
         unlocked = st.session_state.get("unlocked_cycles", [])
         if unlocked:
             st.caption(f"Cycles unlocked: **{len(unlocked)}**")
+
+    st.divider()
+    user = st.session_state.get("current_user")
+    if user:
+        st.caption(f"👤 {user['first_name']} {user['last_name']}")
+        if st.button("Log Out", use_container_width=True):
+            from utils.auth import sign_out
+            sign_out()
+            st.rerun()
+    else:
+        if st.button("Log In / Sign Up", use_container_width=True):
+            st.switch_page(auth_page)
 
 selected_idx = PAGE_LABELS.index(selected_label)
 

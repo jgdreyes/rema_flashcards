@@ -12,6 +12,7 @@ def init_state():
         "show_answer": False,
         "info_split_include_word":  True,  # include Word of Belt cards in Info Split
         "info_split_include_forms": True,  # include Form cards in Info Split
+        "current_user":             None,  # logged-in user dict, or None for guests
     }
     for k, v in defaults.items():
         if k not in st.session_state:
