@@ -8,17 +8,65 @@ st.set_page_config(
 )
 
 from utils.state import init_state
+from utils.data import get_belt_order
+
 init_state()
 
-# ── Sidebar navigation ──────────────────────────────────────────────────────
+# ── Page callables (settings / flashcards / curriculum grid) ──────────────────
+
+def _render_settings():
+    from pages.settings import render
+    render()
+
+
+def _render_flashcards():
+    from pages.flashcards import render
+    render()
+
+
+def _render_curriculum():
+    from pages.curriculum_page import _show_grid
+    _show_grid()
+
+
+# ── Page objects ──────────────────────────────────────────────────────────────
+
+settings_page   = st.Page(_render_settings,   title="Settings",   url_path="settings",   default=True)
+flashcards_page = st.Page(_render_flashcards, title="Flashcards", url_path="flashcards")
+curriculum_page = st.Page(_render_curriculum, title="Curriculum", url_path="curriculum")
+
+# Belt detail pages — file-based so Streamlit derives URLs as curriculum/<belt_key>
+# from the nested file path pages/curriculum/<belt_key>.py.
+belt_order = get_belt_order()   # [(belt_key, belt_name), ...]
+belt_pages = {
+    key: st.Page(f"pages/curriculum/{key}.py", title=name)
+    for key, name in belt_order
+}
+
+# Store page refs so curriculum_page.py can call st.switch_page without importing app.py
+st.session_state["_curriculum_page"] = curriculum_page
+st.session_state["_belt_pages"]       = belt_pages
+
+all_pages = [settings_page, flashcards_page, curriculum_page, *belt_pages.values()]
+pg = st.navigation(all_pages, position="hidden")
+
+# ── Sidebar ───────────────────────────────────────────────────────────────────
+
+PAGE_LABELS  = ["⚙️  Settings", "🃏  Flashcards", "📋  Curriculum"]
+PAGE_OBJECTS = [settings_page, flashcards_page, curriculum_page]
+
+is_belt_page = pg in belt_pages.values()
+current_idx  = 2 if is_belt_page else next(
+    (i for i, p in enumerate(PAGE_OBJECTS) if p.title == pg.title), 0
+)
+
 with st.sidebar:
     st.markdown("## 🥋 REMA Flashcards")
     st.divider()
-    page = st.radio(
+    selected_label = st.radio(
         "Navigate",
-        ["⚙️  Settings", "🃏  Flashcards", "📋  Curriculum"],
-        index=0,
-        key="nav_radio",
+        PAGE_LABELS,
+        index=current_idx,
         label_visibility="collapsed",
     )
     st.divider()
@@ -29,13 +77,9 @@ with st.sidebar:
         if unlocked:
             st.caption(f"Cycles unlocked: **{len(unlocked)}**")
 
-# ── Route pages ─────────────────────────────────────────────────────────────
-if page == "⚙️  Settings":
-    from pages.settings import render
-    render()
-elif page == "🃏  Flashcards":
-    from pages.flashcards import render
-    render()
-else:
-    from pages.curriculum import render
-    render()
+selected_idx = PAGE_LABELS.index(selected_label)
+
+if selected_idx != current_idx:
+    st.switch_page(PAGE_OBJECTS[selected_idx])
+
+pg.run()

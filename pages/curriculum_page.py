@@ -94,8 +94,7 @@ def _show_grid():
                     key=f"grid_{belt['belt_key']}",
                     use_container_width=True,
                 ):
-                    st.session_state.curriculum_selected_belt = belt["belt_key"]
-                    st.rerun()
+                    st.switch_page(st.session_state["_belt_pages"][belt["belt_key"]])
 
 
 # ── Detail view ──────────────────────────────────────────────────────────────
@@ -127,8 +126,7 @@ def _show_detail(belt_key):
 
     # ── Back button ───────────────────────────────────────────────────────────
     if st.button("← Back to Curriculum"):
-        st.session_state.curriculum_selected_belt = None
-        st.rerun()
+        st.switch_page(st.session_state["_curriculum_page"])
 
     # ── Colored header banner ─────────────────────────────────────────────────
     st.markdown(
@@ -254,8 +252,4 @@ def _show_detail(belt_key):
 # ── Entry point ───────────────────────────────────────────────────────────────
 
 def render():
-    selected = st.session_state.get("curriculum_selected_belt")
-    if selected:
-        _show_detail(selected)
-    else:
-        _show_grid()
+    _show_grid()

@@ -10,7 +10,6 @@ def init_state():
         "cards": [],                 # generated deck
         "card_index": 0,
         "show_answer": False,
-        "curriculum_selected_belt": None,  # belt key selected in curriculum view
         "info_split_include_word":  True,  # include Word of Belt cards in Info Split
         "info_split_include_forms": True,  # include Form cards in Info Split
     }
