@@ -27,6 +27,11 @@
         ]
       },
       "forms": null
+    },
+    "belt_color": {
+      "background_color": "#F5F5F5",
+      "foreground_color": "#222222",
+      "stripe_color": null
     }
   },
   {
@@ -58,6 +63,11 @@
         ]
       },
       "forms": null
+    },
+    "belt_color": {
+      "background_color": "#FFD700",
+      "foreground_color": "#2a1f00",
+      "stripe_color": null
     }
   },
   {
@@ -87,8 +97,15 @@
         }
       ],
       "forms": [
-        {"form_key": "chon_ji"}
+        {
+          "form_key": "chon_ji"
+        }
       ]
+    },
+    "belt_color": {
+      "background_color": "#FFD700",
+      "foreground_color": "#2a1f00",
+      "stripe_color": "#000000"
     }
   },
   {
@@ -118,8 +135,15 @@
         }
       ],
       "forms": [
-        {"form_key": "dan_gun"}
+        {
+          "form_key": "dan_gun"
+        }
       ]
+    },
+    "belt_color": {
+      "background_color": "#FF8C00",
+      "foreground_color": "#1a0800",
+      "stripe_color": null
     }
   },
   {
@@ -160,6 +184,11 @@
       ],
       "note": "Combos are blocks and counters using Orange Belt combinations",
       "forms": null
+    },
+    "belt_color": {
+      "background_color": "#FF8C00",
+      "foreground_color": "#1a0800",
+      "stripe_color": "#000000"
     }
   },
   {
@@ -189,8 +218,15 @@
         }
       ],
       "forms": [
-        {"form_key": "do_san"}
+        {
+          "form_key": "do_san"
+        }
       ]
+    },
+    "belt_color": {
+      "background_color": "#2E8B57",
+      "foreground_color": "#FFFFFF",
+      "stripe_color": null
     }
   },
   {
@@ -220,8 +256,15 @@
         }
       ],
       "forms": [
-        {"form_key": "won_hyo"}
+        {
+          "form_key": "won_hyo"
+        }
       ]
+    },
+    "belt_color": {
+      "background_color": "#7B2D8B",
+      "foreground_color": "#FFFFFF",
+      "stripe_color": null
     }
   },
   {
@@ -251,8 +294,15 @@
         }
       ],
       "forms": [
-        {"form_key": "yul_gok"}
+        {
+          "form_key": "yul_gok"
+        }
       ]
+    },
+    "belt_color": {
+      "background_color": "#1E6FBF",
+      "foreground_color": "#FFFFFF",
+      "stripe_color": null
     }
   },
   {
@@ -282,8 +332,15 @@
         }
       ],
       "forms": [
-        {"form_key": "joong_gun"}
+        {
+          "form_key": "joong_gun"
+        }
       ]
+    },
+    "belt_color": {
+      "background_color": "#1E6FBF",
+      "foreground_color": "#FFFFFF",
+      "stripe_color": "#000000"
     }
   },
   {
@@ -324,10 +381,24 @@
         }
       ],
       "forms": [
-        {"form_key": "hwa_rang", "cycle_key": "hwa_rang_cycle"},
-        {"form_key": "chung_mu", "cycle_key": "chung_mu_cycle"},
-        {"form_key": "toi_gye", "cycle_key": "toi_gye_cycle"}
+        {
+          "form_key": "hwa_rang",
+          "cycle_key": "hwa_rang_cycle"
+        },
+        {
+          "form_key": "chung_mu",
+          "cycle_key": "chung_mu_cycle"
+        },
+        {
+          "form_key": "toi_gye",
+          "cycle_key": "toi_gye_cycle"
+        }
       ]
+    },
+    "belt_color": {
+      "background_color": "#C41E3A",
+      "foreground_color": "#FFFFFF",
+      "stripe_color": null
     }
   },
   {
@@ -368,10 +439,24 @@
         }
       ],
       "forms": [
-        {"form_key": "hwa_rang", "cycle_key": "hwa_rang_cycle"},
-        {"form_key": "chung_mu", "cycle_key": "chung_mu_cycle"},
-        {"form_key": "toi_gye", "cycle_key": "toi_gye_cycle"}
+        {
+          "form_key": "hwa_rang",
+          "cycle_key": "hwa_rang_cycle"
+        },
+        {
+          "form_key": "chung_mu",
+          "cycle_key": "chung_mu_cycle"
+        },
+        {
+          "form_key": "toi_gye",
+          "cycle_key": "toi_gye_cycle"
+        }
       ]
+    },
+    "belt_color": {
+      "background_color": "#C41E3A",
+      "foreground_color": "#FFFFFF",
+      "stripe_color": "#000000"
     }
   },
   {
@@ -412,10 +497,24 @@
         }
       ],
       "forms": [
-        {"form_key": "hwa_rang", "cycle_key": "hwa_rang_cycle"},
-        {"form_key": "chung_mu", "cycle_key": "chung_mu_cycle"},
-        {"form_key": "toi_gye", "cycle_key": "toi_gye_cycle"}
+        {
+          "form_key": "hwa_rang",
+          "cycle_key": "hwa_rang_cycle"
+        },
+        {
+          "form_key": "chung_mu",
+          "cycle_key": "chung_mu_cycle"
+        },
+        {
+          "form_key": "toi_gye",
+          "cycle_key": "toi_gye_cycle"
+        }
       ]
+    },
+    "belt_color": {
+      "background_color": "#8B4513",
+      "foreground_color": "#FFFFFF",
+      "stripe_color": "#FFFFFF"
     }
   },
   {
@@ -456,10 +555,24 @@
         }
       ],
       "forms": [
-        {"form_key": "might_for_right", "cycle_key": "might_for_right_cycle"},
-        {"form_key": "gye_baek", "cycle_key": "gye_baek_cycle"},
-        {"form_key": "po_eun", "cycle_key": "po_eun_cycle"}
+        {
+          "form_key": "might_for_right",
+          "cycle_key": "might_for_right_cycle"
+        },
+        {
+          "form_key": "gye_baek",
+          "cycle_key": "gye_baek_cycle"
+        },
+        {
+          "form_key": "po_eun",
+          "cycle_key": "po_eun_cycle"
+        }
       ]
+    },
+    "belt_color": {
+      "background_color": "#8B4513",
+      "foreground_color": "#FFFFFF",
+      "stripe_color": null
     }
   },
   {
@@ -500,10 +613,24 @@
         }
       ],
       "forms": [
-        {"form_key": "might_for_right", "cycle_key": "might_for_right_cycle"},
-        {"form_key": "gye_baek", "cycle_key": "gye_baek_cycle"},
-        {"form_key": "po_eun", "cycle_key": "po_eun_cycle"}
+        {
+          "form_key": "might_for_right",
+          "cycle_key": "might_for_right_cycle"
+        },
+        {
+          "form_key": "gye_baek",
+          "cycle_key": "gye_baek_cycle"
+        },
+        {
+          "form_key": "po_eun",
+          "cycle_key": "po_eun_cycle"
+        }
       ]
+    },
+    "belt_color": {
+      "background_color": "#8B4513",
+      "foreground_color": "#FFFFFF",
+      "stripe_color": "#000000"
     }
   },
   {
@@ -519,10 +646,24 @@
       "curriculum_pdf": "https://rippleeffectmartialarts.com/wp-content/uploads/2021/06/23-Curriculum-Flyers-Conditional-Black.pdf",
       "combos": null,
       "forms": [
-        {"form_key": "marriage_of_east_and_west", "cycle_key": "conditional_black_belt_cycle"},
-        {"form_key": "papuhaku_sho", "cycle_key": "conditional_black_belt_cycle"},
-        {"form_key": "bassai_dai", "cycle_key": "conditional_black_belt_cycle"}
+        {
+          "form_key": "marriage_of_east_and_west",
+          "cycle_key": "conditional_black_belt_cycle"
+        },
+        {
+          "form_key": "papuhaku_sho",
+          "cycle_key": "conditional_black_belt_cycle"
+        },
+        {
+          "form_key": "bassai_dai",
+          "cycle_key": "conditional_black_belt_cycle"
+        }
       ]
+    },
+    "belt_color": {
+      "background_color": "#1A1A1A",
+      "foreground_color": "#FFFFFF",
+      "stripe_color": "#FFFFFF"
     }
   }
 ]

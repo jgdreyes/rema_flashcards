@@ -3,31 +3,26 @@ import streamlit as st
 import streamlit.components.v1 as components
 from utils.data import load_curriculum, get_belt, get_cycle, get_form, get_weapon
 
-# Belt background / foreground colors, optional stripe color
-BELT_COLORS = {
-    "white_belt":             ("#F5F5F5", "#222222", None),
-    "gold_belt":              ("#FFD700", "#2a1f00", None),
-    "high_gold_belt":         ("#FFD700", "#2a1f00", "#000000"),
-    "orange_belt":            ("#FF8C00", "#1a0800", None),
-    "high_orange_belt":       ("#FF8C00", "#1a0800", "#000000"),
-    "green_belt":             ("#2E8B57", "#FFFFFF",  None),
-    "purple_belt":            ("#7B2D8B", "#FFFFFF",  None),
-    "blue_belt":              ("#1E6FBF", "#FFFFFF",  None),
-    "high_blue_belt":         ("#1E6FBF", "#FFFFFF",  "#000000"),
-    "red_belt":               ("#C41E3A", "#FFFFFF",  None),
-    "high_red_belt":          ("#C41E3A", "#FFFFFF",  "#000000"),
-    "low_brown_belt":         ("#8B4513", "#FFFFFF",  "#FFFFFF"),
-    "brown_belt":             ("#8B4513", "#FFFFFF",  None),
-    "high_brown_belt":        ("#8B4513", "#FFFFFF",  "#000000"),
-    "conditional_black_belt": ("#1A1A1A", "#FFFFFF",  "#FFFFFF"),
-}
+_DEFAULT_BG    = "#888888"
+_DEFAULT_FG    = "#FFFFFF"
+_DEFAULT_STRIPE = None
+
+
+def _belt_colors(belt):
+    """Return (background_color, foreground_color, stripe_color) from belt data."""
+    c = belt.get("belt_color", {})
+    return (
+        c.get("background_color", _DEFAULT_BG),
+        c.get("foreground_color", _DEFAULT_FG),
+        c.get("stripe_color", _DEFAULT_STRIPE),
+    )
 
 
 def _inject_belt_colors():
     """Use a components iframe to run JS that styles belt buttons in the parent page."""
     curriculum = load_curriculum()
     color_map = {
-        belt["belt_name"]: list(BELT_COLORS.get(belt["belt_key"], ("#888", "#FFF", None)))
+        belt["belt_name"]: list(_belt_colors(belt))
         for belt in curriculum
     }
     color_map_json = json.dumps(color_map)
@@ -121,7 +116,7 @@ def _show_detail(belt_key):
         st.error("Belt not found.")
         return
 
-    bg, fg, _stripe = BELT_COLORS.get(belt_key, ("#888888", "#FFFFFF", None))
+    bg, fg, _stripe = _belt_colors(belt)
     curr = belt.get("curriculum", {})
 
     # ── Back button ───────────────────────────────────────────────────────────
