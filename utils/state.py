@@ -14,6 +14,8 @@ def init_state():
         "info_split_include_forms": True,  # include Form cards in Info Split
         "current_user":             None,   # logged-in user dict, or None for guests
         "settings_loaded_from_db":  False,  # True once DB settings have been pulled
+        "session_belt_keys":        [],     # active session focus (subset of selected_belt_keys)
+        "focus_gen":                0,      # incremented to reset focus checkboxes
     }
     for k, v in defaults.items():
         if k not in st.session_state:

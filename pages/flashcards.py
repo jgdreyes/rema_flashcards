@@ -15,7 +15,7 @@ MODE_DESCRIPTIONS = {
 
 def _build_and_shuffle():
     cards = build_deck(
-        st.session_state.selected_belt_keys,
+        st.session_state.session_belt_keys or st.session_state.selected_belt_keys,
         st.session_state.unlocked_cycles,
         st.session_state.flashcard_mode,
         include_word=st.session_state.info_split_include_word,
@@ -26,16 +26,10 @@ def _build_and_shuffle():
     st.session_state.show_answer = False
 
 
-def _show_progress_tags():
-    selected_keys = st.session_state.get("selected_belt_keys", [])
-    unlocked = st.session_state.get("unlocked_cycles", [])
-
-    if not selected_keys:
-        st.caption("No belts configured.")
-        return
-
-    pills_html = []
-    for key in selected_keys:
+def _belt_swatches_html(keys):
+    """Return a list of swatch HTML spans for the given belt key list."""
+    swatches = []
+    for key in keys:
         belt = get_belt(key)
         if not belt:
             continue
@@ -47,13 +41,26 @@ def _show_progress_tags():
             bg_css = f"linear-gradient(to bottom, {bg} 0%, {bg} 35%, {stripe} 35%, {stripe} 65%, {bg} 65%)"
         else:
             bg_css = bg
-        pills_html.append(
+        swatches.append(
             f'<span class="belt-tip" style="background:{bg_css};width:32px;height:18px;'
             f'border-radius:4px;margin:2px 3px;display:inline-block;cursor:default;'
             f'position:relative;vertical-align:middle;">'
             f'<span class="belt-tiptext">{name}</span>'
             f'</span>'
         )
+    return swatches
+
+
+def _show_progress_tags():
+    selected_keys = st.session_state.get("selected_belt_keys", [])
+    session_keys  = st.session_state.get("session_belt_keys", [])
+    unlocked = st.session_state.get("unlocked_cycles", [])
+
+    if not selected_keys:
+        st.caption("No belts configured.")
+        return
+
+    pills_html = _belt_swatches_html(selected_keys)
 
     cycle_count = len(unlocked)
     cycle_label = f"{cycle_count} cycle{'s' if cycle_count != 1 else ''} unlocked"
@@ -78,6 +85,17 @@ def _show_progress_tags():
         )
     pills_html.append(cycle_pill)
 
+    # Session focus row (only shown when focus differs from full progress)
+    focus_row_html = ""
+    if session_keys and set(session_keys) != set(selected_keys):
+        focus_swatches = _belt_swatches_html(session_keys)
+        focus_row_html = (
+            '<div style="margin-top:4px;">'
+            '<span style="color:#888;font-size:0.75rem;vertical-align:middle;margin-right:4px;">🎯</span>'
+            + " ".join(focus_swatches)
+            + '</div>'
+        )
+
     tooltip_css = """
     <style>
     .belt-tip .belt-tiptext, .cycle-tip .cycle-tiptext {
@@ -101,7 +119,10 @@ def _show_progress_tags():
     .cycle-tip:hover .cycle-tiptext { visibility: visible; }
     </style>
     """
-    st.markdown(tooltip_css + " ".join(pills_html), unsafe_allow_html=True)
+    st.markdown(
+        tooltip_css + " ".join(pills_html) + focus_row_html,
+        unsafe_allow_html=True,
+    )
 
 
 @st.dialog("Configure Progress")
@@ -157,6 +178,9 @@ def _configure_progress_dialog():
         st.session_state.cards              = []
         st.session_state.card_index         = 0
         st.session_state.show_answer        = False
+        # Reset session focus to match new progress
+        st.session_state.session_belt_keys  = list(selected_belt_keys)
+        st.session_state.focus_gen         += 1
         st.rerun()
 
 
@@ -181,8 +205,16 @@ def render():
             st.info("👆 Hit Configure to select your belts and get started.")
         return
 
+    # ── Sync session focus ────────────────────────────────────────────────────
+    # Keep session_belt_keys as a valid subset of selected_belt_keys
+    sel_set = set(st.session_state.selected_belt_keys)
+    valid = [k for k in st.session_state.session_belt_keys if k in sel_set]
+    if not valid:
+        valid = list(st.session_state.selected_belt_keys)
+    st.session_state.session_belt_keys = valid
+
     # ── Deck controls ─────────────────────────────────────────────────────────
-    col1, col2, col3, col4 = st.columns([2, 1, 1, 1])
+    col1, col2, col3, col4, col5 = st.columns([2, 1, 1, 1, 1])
     with col1:
         saved_mode = st.session_state.flashcard_mode
         mode_index = MODES.index(saved_mode) if saved_mode in MODES else 0
@@ -201,6 +233,33 @@ def render():
         show_all = st.checkbox("Practice Mode", value=False, key="practice_show_all")
 
     with col3:
+        # Belt focus dropdown
+        configured = [(k, n) for k, n in get_belt_order() if k in sel_set]
+        n_total = len(configured)
+        n_focus = len(st.session_state.session_belt_keys)
+        gen = st.session_state.focus_gen
+        label = f"🎯 Focus ({n_focus}/{n_total})"
+        with st.popover(label, use_container_width=True):
+            new_keys = []
+            for key, name in configured:
+                checked = st.checkbox(
+                    name,
+                    value=key in st.session_state.session_belt_keys,
+                    key=f"sf_{key}_{gen}",
+                )
+                if checked:
+                    new_keys.append(key)
+            if new_keys != st.session_state.session_belt_keys:
+                st.session_state.session_belt_keys = new_keys or list(st.session_state.selected_belt_keys)
+                st.session_state.cards = []
+            st.divider()
+            if st.button("↩️ Reset to All", use_container_width=True):
+                st.session_state.session_belt_keys = list(st.session_state.selected_belt_keys)
+                st.session_state.focus_gen        += 1
+                st.session_state.cards             = []
+                st.rerun()
+
+    with col4:
         st.write("")
         if st.button("🔀 Shuffle", use_container_width=True):
             random.shuffle(st.session_state.cards)
@@ -208,7 +267,7 @@ def render():
             st.session_state.show_answer = False
             st.rerun()
 
-    with col4:
+    with col5:
         st.write("")
         if st.button("🃏 Build Deck", type="primary", use_container_width=True):
             _build_and_shuffle()

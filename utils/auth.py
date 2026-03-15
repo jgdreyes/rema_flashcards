@@ -43,6 +43,8 @@ def sign_out():
     st.session_state.cards                   = []
     st.session_state.card_index              = 0
     st.session_state.show_answer             = False
+    st.session_state.session_belt_keys       = []
+    st.session_state.focus_gen               = 0
 
 
 def get_current_user():
