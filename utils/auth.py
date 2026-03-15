@@ -35,7 +35,14 @@ def sign_in(email: str, password: str):
 
 def sign_out():
     get_client().auth.sign_out()
-    st.session_state.current_user = None
+    st.session_state.current_user            = None
+    st.session_state.settings_loaded_from_db = False
+    st.session_state.selected_belt_keys      = []
+    st.session_state.unlocked_cycles         = []
+    st.session_state.settings_saved          = False
+    st.session_state.cards                   = []
+    st.session_state.card_index              = 0
+    st.session_state.show_answer             = False
 
 
 def get_current_user():
@@ -43,9 +50,10 @@ def get_current_user():
 
 
 def _store_user(auth_user, first_name: str, last_name: str):
-    st.session_state.current_user = {
+    st.session_state.current_user            = {
         "id":         str(auth_user.id),
         "email":      auth_user.email,
         "first_name": first_name,
         "last_name":  last_name,
     }
+    st.session_state.settings_loaded_from_db = False

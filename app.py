@@ -58,12 +58,15 @@ pg = st.navigation(all_pages, position="hidden")
 
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 
-PAGE_LABELS  = ["⚙️  Settings", "🃏  Flashcards", "📋  Curriculum"]
-PAGE_OBJECTS = [settings_page, flashcards_page, curriculum_page]
+user = st.session_state.get("current_user")
+
+settings_label = "🔧  User Settings" if user else "🔧  Guest Configuration"
+PAGE_LABELS  = ["📋  Curriculum", "🃏  Flashcards", settings_label]
+PAGE_OBJECTS = [curriculum_page, flashcards_page, settings_page]
 
 is_belt_page = pg in belt_pages.values()
-current_idx  = 2 if is_belt_page else next(
-    (i for i, p in enumerate(PAGE_OBJECTS) if p.title == pg.title), 0
+current_idx  = 0 if is_belt_page else next(
+    (i for i, p in enumerate(PAGE_OBJECTS) if p.title == pg.title), 2
 )
 
 with st.sidebar:
@@ -76,15 +79,6 @@ with st.sidebar:
         label_visibility="collapsed",
     )
     st.divider()
-    if st.session_state.get("settings_saved"):
-        selected = st.session_state.get("selected_belt_keys", [])
-        st.caption(f"Belts selected: **{len(selected)}**")
-        unlocked = st.session_state.get("unlocked_cycles", [])
-        if unlocked:
-            st.caption(f"Cycles unlocked: **{len(unlocked)}**")
-
-    st.divider()
-    user = st.session_state.get("current_user")
     if user:
         st.caption(f"👤 {user['first_name']} {user['last_name']}")
         if st.button("Log Out", use_container_width=True):

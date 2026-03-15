@@ -1,8 +1,14 @@
 import streamlit as st
 from utils.data import get_belt_order, get_belt, load_cycles
+from utils.auth import get_current_user
+from utils.user_settings import load_settings, save_settings
 
 
 def render():
+    # If a user is logged in and we haven't loaded their DB settings yet, do it now
+    user = get_current_user()
+    if user and not st.session_state.get("settings_loaded_from_db"):
+        load_settings(user["id"])
     st.title("⚙️ Settings")
     st.markdown("Configure which belts and cycles you want to study.")
     st.divider()
@@ -70,6 +76,9 @@ def render():
         st.session_state.selected_belt_keys = selected_belt_keys
         st.session_state.unlocked_cycles    = selected_cycles
         st.session_state.settings_saved     = True
+
+        if user:
+            save_settings(user["id"], selected_belt_keys, selected_cycles)
 
         # Reset any active deck so it gets rebuilt
         st.session_state.cards       = []
