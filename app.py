@@ -49,8 +49,9 @@ belt_pages = {
     for key, name in belt_order
 }
 
-# Store page refs so curriculum_page.py can call st.switch_page without importing app.py
+# Store page refs so other modules can call st.switch_page without importing app.py
 st.session_state["_curriculum_page"] = curriculum_page
+st.session_state["_settings_page"]   = settings_page
 st.session_state["_belt_pages"]       = belt_pages
 
 all_pages = [settings_page, flashcards_page, curriculum_page, auth_page, *belt_pages.values()]
@@ -84,7 +85,8 @@ with st.sidebar:
         if st.button("Log Out", use_container_width=True):
             from utils.auth import sign_out
             sign_out()
-            st.rerun()
+            st.session_state["_pending_toast"] = ("info", "You've been logged out.")
+            st.switch_page(curriculum_page)
     else:
         if st.button("Log In / Sign Up", use_container_width=True):
             st.switch_page(auth_page)
@@ -93,5 +95,9 @@ selected_idx = PAGE_LABELS.index(selected_label)
 
 if selected_idx != current_idx:
     st.switch_page(PAGE_OBJECTS[selected_idx])
+
+if "_pending_toast" in st.session_state:
+    icon, msg = st.session_state.pop("_pending_toast")
+    st.toast(msg, icon=icon)
 
 pg.run()
