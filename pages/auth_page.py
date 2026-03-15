@@ -33,7 +33,7 @@ def _show_auth_forms():
             try:
                 sign_in(email, password)
                 st.session_state["_pending_toast"] = ("✅", "You've successfully logged in!")
-                st.switch_page(st.session_state["_settings_page"])
+                st.switch_page(st.session_state["_dashboard_page"])
             except Exception as e:
                 st.error(str(e))
 
@@ -51,6 +51,6 @@ def _show_auth_forms():
             try:
                 sign_up(email, password, first_name, last_name)
                 st.session_state["_pending_toast"] = ("✅", "Account created! You are now logged in.")
-                st.switch_page(st.session_state["_settings_page"])
+                st.switch_page(st.session_state["_dashboard_page"])
             except Exception as e:
                 st.error(str(e))

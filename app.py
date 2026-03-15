@@ -34,12 +34,18 @@ def _render_auth():
     render()
 
 
+def _render_dashboard():
+    from pages.dashboard import render
+    render()
+
+
 # ── Page objects ──────────────────────────────────────────────────────────────
 
 settings_page   = st.Page(_render_settings,   title="Settings",   url_path="settings",   default=True)
 flashcards_page = st.Page(_render_flashcards, title="Flashcards", url_path="flashcards")
 curriculum_page = st.Page(_render_curriculum, title="Curriculum", url_path="curriculum")
 auth_page       = st.Page(_render_auth,       title="Account",    url_path="account")
+dashboard_page  = st.Page(_render_dashboard,  title="Dashboard",  url_path="dashboard")
 
 # Belt detail pages — file-based so Streamlit derives URLs as curriculum/<belt_key>
 # from the nested file path pages/curriculum/<belt_key>.py.
@@ -53,8 +59,9 @@ belt_pages = {
 st.session_state["_curriculum_page"] = curriculum_page
 st.session_state["_settings_page"]   = settings_page
 st.session_state["_belt_pages"]       = belt_pages
+st.session_state["_dashboard_page"]  = dashboard_page
 
-all_pages = [settings_page, flashcards_page, curriculum_page, auth_page, *belt_pages.values()]
+all_pages = [settings_page, flashcards_page, curriculum_page, auth_page, dashboard_page, *belt_pages.values()]
 pg = st.navigation(all_pages, position="hidden")
 
 # ── Sidebar ───────────────────────────────────────────────────────────────────
@@ -62,8 +69,8 @@ pg = st.navigation(all_pages, position="hidden")
 user = st.session_state.get("current_user")
 
 if user:
-    PAGE_LABELS  = ["📋  Curriculum", "🃏  Flashcards", "🔧  User Settings"]
-    PAGE_OBJECTS = [curriculum_page, flashcards_page, settings_page]
+    PAGE_LABELS  = ["🏠  My Progress", "📋  Curriculum", "🃏  Flashcards", "🔧  User Settings"]
+    PAGE_OBJECTS = [dashboard_page, curriculum_page, flashcards_page, settings_page]
 else:
     PAGE_LABELS  = ["📋  Curriculum", "🃏  Flashcards"]
     PAGE_OBJECTS = [curriculum_page, flashcards_page]
