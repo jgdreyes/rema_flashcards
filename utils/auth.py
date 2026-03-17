@@ -45,6 +45,8 @@ def sign_out():
     st.session_state.show_answer             = False
     st.session_state.session_belt_keys       = []
     st.session_state.focus_gen               = 0
+    st.session_state.fullscreen_mode         = False
+    st.session_state.fs_nav_gen              = 0
 
 
 def get_current_user():

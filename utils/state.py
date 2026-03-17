@@ -16,6 +16,8 @@ def init_state():
         "settings_loaded_from_db":  False,  # True once DB settings have been pulled
         "session_belt_keys":        [],     # active session focus (subset of selected_belt_keys)
         "focus_gen":                0,      # incremented to reset focus checkboxes
+        "fullscreen_mode":          False,  # phone / full-screen card view
+        "fs_nav_gen":               0,      # incremented to reset fullscreen nav control
     }
     for k, v in defaults.items():
         if k not in st.session_state:

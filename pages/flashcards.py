@@ -12,6 +12,29 @@ MODE_DESCRIPTIONS = {
     "Word of the Belt": "One card per selected belt — word and meaning only. Ignores cycle selections.",
 }
 
+_FULLSCREEN_CSS = """
+<style>
+header[data-testid="stHeader"],
+section[data-testid="stSidebar"],
+footer,
+#MainMenu { display: none !important; }
+
+.main .block-container {
+    padding: 0.75rem 0.75rem 0 0.75rem !important;
+    max-width: 100% !important;
+}
+
+/* Make the card container fill vertical space */
+div[data-testid="stVerticalBlockBorderWrapper"] {
+    min-height: 52vh !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+</style>
+"""
+
 
 def _build_and_shuffle():
     cards = build_deck(
@@ -108,6 +131,70 @@ def _show_progress_tags():
     st.markdown(tooltip_css + " ".join(pills_html), unsafe_allow_html=True)
 
 
+def _render_fullscreen(cards, idx, total, card):
+    # Read before widgets render — session_state is updated by Streamlit before script runs
+    show_all = st.session_state.get("practice_show_all", False)
+
+    st.markdown(_FULLSCREEN_CSS, unsafe_allow_html=True)
+
+    # ── Top bar ───────────────────────────────────────────────────────────────
+    prog_col, prac_col, exit_col = st.columns([4, 1, 1])
+    with prog_col:
+        st.progress(idx / total, text=f"{idx + 1} / {total}")
+    with prac_col:
+        st.checkbox("Practice", key="practice_show_all")
+    with exit_col:
+        if st.button("✕ Exit", use_container_width=True):
+            st.session_state.fullscreen_mode = False
+            st.rerun()
+
+    # ── Belt + category label ─────────────────────────────────────────────────
+    st.caption(f"`{card['belt']}` · `{card['category']}`")
+
+    # ── Card ──────────────────────────────────────────────────────────────────
+    with st.container(border=True):
+        st.markdown(f"## {card['question']}")
+
+        if st.session_state.show_answer or show_all:
+            st.divider()
+            st.markdown(card["answer"])
+
+    # ── Navigation button group ───────────────────────────────────────────────
+    nav_options = []
+    if idx > 0:
+        nav_options.append("◀ Prev")
+    if not show_all:
+        nav_options.append("🙈 Hide" if st.session_state.show_answer else "👁 Reveal")
+    if idx < total - 1:
+        nav_options.append("▶ Next")
+    nav_options.append("🔁 Restart")
+
+    action = st.segmented_control(
+        "nav", nav_options,
+        selection_mode="single",
+        key=f"fs_nav_{st.session_state.fs_nav_gen}",
+        label_visibility="collapsed",
+    )
+    if action:
+        if action == "◀ Prev":
+            st.session_state.card_index  = idx - 1
+            st.session_state.show_answer = False
+        elif action in ("👁 Reveal", "🙈 Hide"):
+            st.session_state.show_answer = not st.session_state.show_answer
+        elif action == "▶ Next":
+            st.session_state.card_index  = idx + 1
+            st.session_state.show_answer = False
+        elif action == "🔁 Restart":
+            st.session_state.card_index  = 0
+            st.session_state.show_answer = False
+        st.session_state.fs_nav_gen += 1
+        st.rerun()
+
+    # ── Completion banner ─────────────────────────────────────────────────────
+    if idx == total - 1 and (st.session_state.show_answer or show_all):
+        st.success("🎉 Deck complete! Hit 🔁 to restart.")
+
+
 @st.dialog("Configure Progress")
 def _configure_progress_dialog():
     belt_order = get_belt_order()
@@ -171,10 +258,8 @@ def render():
     from utils.auth import get_current_user
     user = get_current_user()
 
-    st.title("🃏 Flashcards")
-
     if not st.session_state.get("settings_saved"):
-        # ── Progress tags (always visible) ──────────────────────────────────
+        st.title("🃏 Flashcards")
         tag_col, btn_col = st.columns([5, 1])
         with tag_col:
             _show_progress_tags()
@@ -184,6 +269,10 @@ def render():
         if user:
             st.warning("👆 Hit Configure or visit **User Settings** to set up your belts and cycles.")
         else:
+
+
+
+
             st.info("👆 Hit Configure to select your belts and get started.")
         return
 
@@ -191,25 +280,48 @@ def render():
     sel_set = set(st.session_state.selected_belt_keys)
     gen = st.session_state.focus_gen
     prev_focus = st.session_state.session_belt_keys
-    # If checkbox keys exist in session_state, use them (they're updated before rerun)
     if any(f"sf_{k}_{gen}" in st.session_state for k in sel_set):
         synced = [k for k in st.session_state.selected_belt_keys
                   if st.session_state.get(f"sf_{k}_{gen}", True)]
         st.session_state.session_belt_keys = synced or list(st.session_state.selected_belt_keys)
     else:
-        # First render — initialize to full set if empty
         valid = [k for k in st.session_state.session_belt_keys if k in sel_set]
         st.session_state.session_belt_keys = valid or list(st.session_state.selected_belt_keys)
     if set(st.session_state.session_belt_keys) != set(prev_focus):
         st.session_state.cards = []
 
-    # ── Progress tags (always visible) ────────────────────────────────────────
-    tag_col, btn_col = st.columns([5, 1])
+    # Auto-build if no deck yet
+    if not st.session_state.cards:
+        _build_and_shuffle()
+
+    cards = st.session_state.cards
+    if not cards:
+        st.title("🃏 Flashcards")
+        st.error("No flashcards generated. Try unlocking more cycles in Settings.")
+        return
+
+    idx   = st.session_state.card_index
+    card  = cards[idx]
+    total = len(cards)
+
+    # ── Full-screen mode ──────────────────────────────────────────────────────
+    if st.session_state.fullscreen_mode:
+        _render_fullscreen(cards, idx, total, card)
+        return
+
+    # ── Normal mode ───────────────────────────────────────────────────────────
+    st.title("🃏 Flashcards")
+
+    tag_col, cfg_col, fs_col = st.columns([4, 1, 1])
     with tag_col:
         _show_progress_tags()
-    with btn_col:
+    with cfg_col:
         if st.button("⚙️ Configure", use_container_width=True):
             _configure_progress_dialog()
+    with fs_col:
+        if st.button("⛶ Full Screen", use_container_width=True):
+            st.session_state.fullscreen_mode = True
+            st.rerun()
 
     # ── Deck controls ─────────────────────────────────────────────────────────
     col1, col2, col3, col4, col5 = st.columns([2, 1, 1, 1, 1])
@@ -231,7 +343,6 @@ def render():
         show_all = st.checkbox("Practice Mode", value=False, key="practice_show_all")
 
     with col3:
-        # Belt focus dropdown
         configured = [(k, n) for k, n in get_belt_order() if k in sel_set]
         n_total = len(configured)
         n_focus = len(st.session_state.session_belt_keys)
@@ -290,26 +401,13 @@ def render():
             st.session_state.info_split_include_forms = include_forms
             st.session_state.cards = []
 
-    # Auto-build if no deck yet
-    if not st.session_state.cards:
-        _build_and_shuffle()
-
-    cards = st.session_state.cards
-    if not cards:
-        st.error("No flashcards generated. Try unlocking more cycles in Settings.")
-        return
-
-    idx   = st.session_state.card_index
-    card  = cards[idx]
-    total = len(cards)
-
     if show_all:
         st.info("📖 **Practice Mode** — answers are always visible.")
 
     st.divider()
 
     # ── Progress ──────────────────────────────────────────────────────────────
-    st.progress((idx) / total, text=f"Card {idx + 1} of {total}")
+    st.progress(idx / total, text=f"Card {idx + 1} of {total}")
 
     # ── Belt + category badge ─────────────────────────────────────────────────
     badge_col, spacer = st.columns([3, 1])
