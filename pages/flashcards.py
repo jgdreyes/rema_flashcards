@@ -26,41 +26,38 @@ def _build_and_shuffle():
     st.session_state.show_answer = False
 
 
-def _belt_swatches_html(keys):
-    """Return a list of swatch HTML spans for the given belt key list."""
-    swatches = []
-    for key in keys:
+def _show_progress_tags():
+    selected_keys = st.session_state.get("selected_belt_keys", [])
+    session_keys  = set(st.session_state.get("session_belt_keys", []))
+    unlocked      = st.session_state.get("unlocked_cycles", [])
+    has_focus     = bool(session_keys) and session_keys != set(selected_keys)
+
+    if not selected_keys:
+        st.caption("No belts configured.")
+        return
+
+    pills_html = []
+    for key in selected_keys:
         belt = get_belt(key)
         if not belt:
             continue
-        name = belt["belt_name"]
-        color = belt.get("belt_color", {})
+        name   = belt["belt_name"]
+        color  = belt.get("belt_color", {})
         bg     = color.get("background_color", "#888888")
         stripe = color.get("stripe_color")
         if stripe:
             bg_css = f"linear-gradient(to bottom, {bg} 0%, {bg} 35%, {stripe} 35%, {stripe} 65%, {bg} 65%)"
         else:
             bg_css = bg
-        swatches.append(
+        dimmed = has_focus and key not in session_keys
+        extra  = "opacity:0.2;filter:grayscale(60%);" if dimmed else ""
+        pills_html.append(
             f'<span class="belt-tip" style="background:{bg_css};width:32px;height:18px;'
             f'border-radius:4px;margin:2px 3px;display:inline-block;cursor:default;'
-            f'position:relative;vertical-align:middle;">'
+            f'position:relative;vertical-align:middle;{extra}">'
             f'<span class="belt-tiptext">{name}</span>'
             f'</span>'
         )
-    return swatches
-
-
-def _show_progress_tags():
-    selected_keys = st.session_state.get("selected_belt_keys", [])
-    session_keys  = st.session_state.get("session_belt_keys", [])
-    unlocked = st.session_state.get("unlocked_cycles", [])
-
-    if not selected_keys:
-        st.caption("No belts configured.")
-        return
-
-    pills_html = _belt_swatches_html(selected_keys)
 
     cycle_count = len(unlocked)
     cycle_label = f"{cycle_count} cycle{'s' if cycle_count != 1 else ''} unlocked"
@@ -85,17 +82,6 @@ def _show_progress_tags():
         )
     pills_html.append(cycle_pill)
 
-    # Session focus row (only shown when focus differs from full progress)
-    focus_row_html = ""
-    if session_keys and set(session_keys) != set(selected_keys):
-        focus_swatches = _belt_swatches_html(session_keys)
-        focus_row_html = (
-            '<div style="margin-top:4px;">'
-            '<span style="color:#888;font-size:0.75rem;vertical-align:middle;margin-right:4px;">🎯</span>'
-            + " ".join(focus_swatches)
-            + '</div>'
-        )
-
     tooltip_css = """
     <style>
     .belt-tip .belt-tiptext, .cycle-tip .cycle-tiptext {
@@ -119,10 +105,7 @@ def _show_progress_tags():
     .cycle-tip:hover .cycle-tiptext { visibility: visible; }
     </style>
     """
-    st.markdown(
-        tooltip_css + " ".join(pills_html) + focus_row_html,
-        unsafe_allow_html=True,
-    )
+    st.markdown(tooltip_css + " ".join(pills_html), unsafe_allow_html=True)
 
 
 @st.dialog("Configure Progress")
@@ -190,6 +173,36 @@ def render():
 
     st.title("🃏 Flashcards")
 
+    if not st.session_state.get("settings_saved"):
+        # ── Progress tags (always visible) ──────────────────────────────────
+        tag_col, btn_col = st.columns([5, 1])
+        with tag_col:
+            _show_progress_tags()
+        with btn_col:
+            if st.button("⚙️ Configure", use_container_width=True):
+                _configure_progress_dialog()
+        if user:
+            st.warning("👆 Hit Configure or visit **User Settings** to set up your belts and cycles.")
+        else:
+            st.info("👆 Hit Configure to select your belts and get started.")
+        return
+
+    # ── Sync session focus from checkbox widget states (runs before tags render)
+    sel_set = set(st.session_state.selected_belt_keys)
+    gen = st.session_state.focus_gen
+    prev_focus = st.session_state.session_belt_keys
+    # If checkbox keys exist in session_state, use them (they're updated before rerun)
+    if any(f"sf_{k}_{gen}" in st.session_state for k in sel_set):
+        synced = [k for k in st.session_state.selected_belt_keys
+                  if st.session_state.get(f"sf_{k}_{gen}", True)]
+        st.session_state.session_belt_keys = synced or list(st.session_state.selected_belt_keys)
+    else:
+        # First render — initialize to full set if empty
+        valid = [k for k in st.session_state.session_belt_keys if k in sel_set]
+        st.session_state.session_belt_keys = valid or list(st.session_state.selected_belt_keys)
+    if set(st.session_state.session_belt_keys) != set(prev_focus):
+        st.session_state.cards = []
+
     # ── Progress tags (always visible) ────────────────────────────────────────
     tag_col, btn_col = st.columns([5, 1])
     with tag_col:
@@ -197,21 +210,6 @@ def render():
     with btn_col:
         if st.button("⚙️ Configure", use_container_width=True):
             _configure_progress_dialog()
-
-    if not st.session_state.get("settings_saved"):
-        if user:
-            st.warning("👆 Hit Configure or visit **User Settings** to set up your belts and cycles.")
-        else:
-            st.info("👆 Hit Configure to select your belts and get started.")
-        return
-
-    # ── Sync session focus ────────────────────────────────────────────────────
-    # Keep session_belt_keys as a valid subset of selected_belt_keys
-    sel_set = set(st.session_state.selected_belt_keys)
-    valid = [k for k in st.session_state.session_belt_keys if k in sel_set]
-    if not valid:
-        valid = list(st.session_state.selected_belt_keys)
-    st.session_state.session_belt_keys = valid
 
     # ── Deck controls ─────────────────────────────────────────────────────────
     col1, col2, col3, col4, col5 = st.columns([2, 1, 1, 1, 1])
@@ -237,7 +235,6 @@ def render():
         configured = [(k, n) for k, n in get_belt_order() if k in sel_set]
         n_total = len(configured)
         n_focus = len(st.session_state.session_belt_keys)
-        gen = st.session_state.focus_gen
         label = f"🎯 Focus ({n_focus}/{n_total})"
         with st.popover(label, use_container_width=True):
             new_keys = []
